@@ -186,7 +186,8 @@ namespace EbbsSoft
         }
 
         /// <summary>
-        /// Get the file mime type for uploading
+        /// Get the file mime type.
+        /// [May Only Work For WINDOWS]
         /// </summary>
         /// <param name="filePathLocation">file path location</param>
         /// <returns></returns>
