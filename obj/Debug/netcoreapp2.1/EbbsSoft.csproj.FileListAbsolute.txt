@@ -1,0 +1,11 @@
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\bin\Debug\netcoreapp2.1\EbbsSoft.deps.json
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\bin\Debug\netcoreapp2.1\EbbsSoft.runtimeconfig.json
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\bin\Debug\netcoreapp2.1\EbbsSoft.runtimeconfig.dev.json
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\bin\Debug\netcoreapp2.1\EbbsSoft.dll
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\bin\Debug\netcoreapp2.1\EbbsSoft.pdb
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netcoreapp2.1\EbbsSoft.csprojAssemblyReference.cache
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netcoreapp2.1\EbbsSoft.csproj.CoreCompileInputs.cache
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netcoreapp2.1\EbbsSoft.AssemblyInfoInputs.cache
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netcoreapp2.1\EbbsSoft.AssemblyInfo.cs
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netcoreapp2.1\EbbsSoft.dll
+C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netcoreapp2.1\EbbsSoft.pdb
