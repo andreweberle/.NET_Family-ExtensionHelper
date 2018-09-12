@@ -191,7 +191,7 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="filePathLocation">file path location</param>
         /// <returns></returns>
-        public static string GetMimeType(string filePathLocation)
+        public static string GetMimeType(this string filePathLocation)
         {
             if (filePathLocation.IsValidFilePath())
             {
