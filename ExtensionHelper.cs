@@ -12,7 +12,13 @@ using System.Xml.Linq;
 namespace EbbsSoft
 {
     static class ExtensionHelper
-    {    
+    {   
+        public enum OutputStyle
+        {
+            WRITE,
+            WRITE_LINE
+        }
+
         /// <summary>
         /// Encoding Types
         /// </summary>
@@ -609,6 +615,34 @@ namespace EbbsSoft
             {
                 return null;
             }
+        }
+
+        /// <Summary>
+        /// Write Coloured Text To The Console.
+        /// </Summary>
+        public static void ColouredPrint(this ConsoleColor foreground, string value, OutputStyle outputStyle = OutputStyle.WRITE_LINE)
+        {
+            // Save the current console foreground colour.
+            ConsoleColor currentForeground = Console.ForegroundColor;
+
+            // Change the console foreground colour to the selected.
+            Console.ForegroundColor = foreground;
+
+            // Print the value with the selected output style.
+            switch (outputStyle)
+            {
+                // Write Result
+                case OutputStyle.WRITE:
+                    Console.Write(value);
+                break;
+                // WriteLine Result
+                case OutputStyle.WRITE_LINE:
+                    Console.WriteLine(value);
+                break;
+            }
+
+            // Restore the console foreground colour
+            Console.ForegroundColor = currentForeground;
         }
 
         /// <summary>
