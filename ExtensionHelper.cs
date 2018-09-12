@@ -620,7 +620,7 @@ namespace EbbsSoft
         /// <Summary>
         /// Write Coloured Text To The Console.
         /// </Summary>
-        public static void ColouredPrint(this ConsoleColor foreground, string value, OutputStyle outputStyle = OutputStyle.WRITE_LINE)
+        public static void ColouredPrint(this ConsoleColor colour, ConsoleColor foreground, string value, OutputStyle outputStyle = OutputStyle.WRITE_LINE)
         {
             // Save the current console foreground colour.
             ConsoleColor currentForeground = Console.ForegroundColor;
