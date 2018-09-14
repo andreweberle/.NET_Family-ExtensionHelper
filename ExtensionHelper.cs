@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Xml;
 using System.Xml.Linq;
@@ -187,25 +188,45 @@ namespace EbbsSoft
 
         /// <summary>
         /// Get the file mime type.
-        /// [May Only Work For WINDOWS]
         /// </summary>
         /// <param name="filePathLocation">file path location</param>
         /// <returns></returns>
         public static string GetMimeType(this string filePathLocation)
         {
-            if (filePathLocation.IsValidFilePath())
+            // Check If The Operating System If Supported.
+            if (IsWindows)
             {
-                string mimeType = "application/unknown";
-                string ext = Path.GetExtension(filePathLocation).ToLower();
-                Microsoft.Win32.RegistryKey regKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
-
-                if (regKey != null && regKey.GetValue("Content Type") != null)
+                if (filePathLocation.IsValidFilePath())
                 {
-                    mimeType = regKey.GetValue("Content Type").ToString();
+                    string mimeType = "application/unknown";
+                    string ext = Path.GetExtension(filePathLocation).ToLower();
+                    Microsoft.Win32.RegistryKey regKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
+
+                    if (regKey != null && regKey.GetValue("Content Type") != null)
+                    {
+                        mimeType = regKey.GetValue("Content Type").ToString();
+                    }
+                    return mimeType;
                 }
-                return mimeType;
             }
+            else
+            {
+                throw new Exception(string.Format("--OPERATING SYSTEM ({0}) NOT SUPPORTED--", RuntimeInformation.OSDescription));
+            }
+            
             return null;
+        }
+
+        /// <Summary>
+        /// Check If The Operating System Is Windows
+        /// </Summary>
+        public static bool IsWindows
+        {
+            get
+            {
+                // Return true is the os is windows, else return false.
+                return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? true : false;
+            }
         }
 
         /// <summary>
@@ -572,33 +593,6 @@ namespace EbbsSoft
                 }
             }
             return words;
-        }
-
-        /// <summary>
-        /// Remove Namespace(ns) From XML Document.
-        /// </summary>
-        /// <param name="doc"></param>
-        /// <returns></returns>
-        public static XmlDocument RemoveXmlNS(this XmlDocument doc)
-        {
-            XDocument d;
-            XmlDocument xmlDocument = new XmlDocument();
-            using (XmlNodeReader nodeReader = new XmlNodeReader(doc))
-            {
-                d = XDocument.Load(nodeReader);
-                d.Root.Descendants().Attributes().Where(x => x.IsNamespaceDeclaration).Remove();
-
-                using (XmlReader xmlReader = d.CreateReader())
-                {
-                    xmlDocument.Load(xmlReader);
-
-                    foreach (XElement elem in d.Descendants())
-                    {
-                        elem.Name = elem.Name.LocalName;
-                    }
-                }
-            }
-            return xmlDocument;
         }
 
         /// <summary>
