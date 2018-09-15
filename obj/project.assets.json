@@ -868,23 +868,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andrew Eberle\\.nuget\\packages\\": {},
+    "C:\\Users\\WeRdNA\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andrew Eberle\\Documents\\Visual Code\\C#\\EbbsSoft\\EbbsSoft.csproj",
+      "projectUniqueName": "C:\\Users\\WeRdNA\\Documents\\Projects\\C#\\.NetCore\\DotNetCore-ExtensionHelper\\EbbsSoft.csproj",
       "projectName": "EbbsSoft",
-      "projectPath": "C:\\Users\\Andrew Eberle\\Documents\\Visual Code\\C#\\EbbsSoft\\EbbsSoft.csproj",
-      "packagesPath": "C:\\Users\\Andrew Eberle\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andrew Eberle\\Documents\\Visual Code\\C#\\EbbsSoft\\obj\\",
+      "projectPath": "C:\\Users\\WeRdNA\\Documents\\Projects\\C#\\.NetCore\\DotNetCore-ExtensionHelper\\EbbsSoft.csproj",
+      "packagesPath": "C:\\Users\\WeRdNA\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\WeRdNA\\Documents\\Projects\\C#\\.NetCore\\DotNetCore-ExtensionHelper\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Andrew Eberle\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\WeRdNA\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

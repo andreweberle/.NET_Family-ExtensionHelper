@@ -12,8 +12,14 @@ using System.Xml.Linq;
 
 namespace EbbsSoft
 {
+    /// <summary>
+    /// An Extension Helper For .Net Core
+    /// </summary>
     static class ExtensionHelper
     {   
+        /// <summary>
+        /// Output Style Required For For PrintColouredText
+        /// </summary>
         public enum OutputStyle
         {
             WRITE,
@@ -615,7 +621,7 @@ namespace EbbsSoft
         /// <Summary>
         /// Write Coloured Text To The Console.
         /// </Summary>
-        public static void ColouredPrint(this ConsoleColor colour, ConsoleColor foreground, string value, OutputStyle outputStyle = OutputStyle.WRITE_LINE)
+        public static void PrintColouredText(this ConsoleColor colour, ConsoleColor foreground, string value, OutputStyle outputStyle = OutputStyle.WRITE_LINE)
         {
             // Save the current console foreground colour.
             ConsoleColor currentForeground = Console.ForegroundColor;
@@ -634,6 +640,34 @@ namespace EbbsSoft
                 case OutputStyle.WRITE_LINE:
                     Console.WriteLine(value);
                 break;
+            }
+
+            // Restore the console foreground colour
+            Console.ForegroundColor = currentForeground;
+        }
+
+        /// <Summary>
+        /// Write Coloured Text To The Console.
+        /// </Summary>
+        public static void PrintColouredText(this string @str, ConsoleColor foreground, OutputStyle outputStyle = OutputStyle.WRITE_LINE)
+        {
+            // Save the current console foreground colour.
+            ConsoleColor currentForeground = Console.ForegroundColor;
+
+            // Change the console foreground colour to the selected.
+            Console.ForegroundColor = foreground;
+
+            // Print the value with the selected output style.
+            switch (outputStyle)
+            {
+                // Write Result
+                case OutputStyle.WRITE:
+                    Console.Write(@str);
+                    break;
+                // WriteLine Result
+                case OutputStyle.WRITE_LINE:
+                    Console.WriteLine(@str);
+                    break;
             }
 
             // Restore the console foreground colour

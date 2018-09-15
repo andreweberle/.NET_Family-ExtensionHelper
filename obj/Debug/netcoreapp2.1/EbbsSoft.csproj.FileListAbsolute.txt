@@ -9,3 +9,14 @@ C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netcoreapp2.1
 C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netcoreapp2.1\EbbsSoft.AssemblyInfo.cs
 C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netcoreapp2.1\EbbsSoft.dll
 C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netcoreapp2.1\EbbsSoft.pdb
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netcoreapp2.1\EbbsSoft.csprojAssemblyReference.cache
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netcoreapp2.1\EbbsSoft.csproj.CoreCompileInputs.cache
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netcoreapp2.1\EbbsSoft.AssemblyInfoInputs.cache
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netcoreapp2.1\EbbsSoft.AssemblyInfo.cs
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netcoreapp2.1\EbbsSoft.dll
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netcoreapp2.1\EbbsSoft.pdb
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\bin\Debug\netcoreapp2.1\EbbsSoft.deps.json
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\bin\Debug\netcoreapp2.1\EbbsSoft.runtimeconfig.json
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\bin\Debug\netcoreapp2.1\EbbsSoft.runtimeconfig.dev.json
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\bin\Debug\netcoreapp2.1\EbbsSoft.dll
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\bin\Debug\netcoreapp2.1\EbbsSoft.pdb
