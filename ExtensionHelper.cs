@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -672,6 +673,39 @@ namespace EbbsSoft
 
             // Restore the console foreground colour
             Console.ForegroundColor = currentForeground;
+        }
+
+        /// <summary>
+        /// Bubble Sort
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static dynamic BubbleSort(this dynamic[] array)
+        {
+            for (int i = 0; i != array.Length; i++)
+            {
+                for (int j = i + 1; j != array.Length; j++)
+                {
+                    if (array[i] > array[j])
+                    {
+                        Swap(ref array[i], ref array[j]);
+                    }
+                }
+            }
+            return array; 
+        }
+
+        /// <summary>
+        /// Preform a swap between two dynamic
+        /// objects.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        private static void Swap(ref dynamic x, ref dynamic y)
+        {
+            dynamic temp = x;
+            x = y;
+            y = temp;
         }
 
         /// <summary>
