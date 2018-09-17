@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -59,14 +58,14 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static Boolean IsValidDirectoryPath(this string path) => Directory.Exists(path);
+        public static bool IsValidDirectoryPath(this string path) => Directory.Exists(path);
 
         /// <summary>
         /// Check if an object array has a duplicate object,
         /// </summary>
         /// <param name="arrayList"></param>
         /// <returns></returns>
-        public static Boolean? HasDuplicateItem<T>(this T[] arrayList)
+        public static bool? HasDuplicateItem<T>(this T[] arrayList)
         {
             // Check if the list is an array
             // This should always been an array
@@ -104,7 +103,7 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="fullFilePath"></param>
         /// <returns></returns>
-        public static Boolean IsValidFilePath(this string fullFilePath) => File.Exists(fullFilePath);
+        public static bool IsValidFilePath(this string fullFilePath) => File.Exists(fullFilePath);
 
         /// <summary>
         /// Moves files from one directory to another.
@@ -148,7 +147,7 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="bytes"></param>
         /// <returns></returns>
-        public static String BytesToHumanReadableSize(this object bytes)
+        public static string BytesToHumanReadableSize(this object bytes)
         {
             // https://msdn.microsoft.com/en-us/library/system.typecode.aspx
             TypeCode[] UNCONVERTABLE_OBJECT_TYPES = new TypeCode[]
@@ -650,7 +649,7 @@ namespace EbbsSoft
         /// <Summary>
         /// Write Coloured Text To The Console.
         /// </Summary>
-        public static void PrintColouredText(this string @str, ConsoleColor foreground, OutputStyle outputStyle = OutputStyle.WRITE_LINE)
+        public static string PrintColouredText(this string @str, ConsoleColor foreground, OutputStyle outputStyle = OutputStyle.WRITE_LINE)
         {
             // Save the current console foreground colour.
             ConsoleColor currentForeground = Console.ForegroundColor;
@@ -673,6 +672,9 @@ namespace EbbsSoft
 
             // Restore the console foreground colour
             Console.ForegroundColor = currentForeground;
+
+            // Return Nothing
+            return null;
         }
 
         /// <summary>
@@ -680,30 +682,76 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public static dynamic BubbleSort(this dynamic[] array)
+        public static dynamic BubbleSort(this int[] array)
         {
-            for (int i = 0; i != array.Length; i++)
+            try
             {
-                for (int j = i + 1; j != array.Length; j++)
+                // We will use the bubble sort algorthim
+                for (int i = 0; i != array.Length; i++)
                 {
-                    if (array[i] > array[j])
+                    for (int j = i + 1; j != array.Length; j++)
                     {
-                        Swap(ref array[i], ref array[j]);
+                        // if the current element is higher
+                        // then the next element, we will swap
+                        // their positions around.
+                        if (array[i] > array[j])
+                        {
+                            Swap(ref array[i], ref array[j]);
+                        }
                     }
                 }
+
+                // Once the algorithm is completed,
+                // we will return the array back to
+                // the caller.
+                return array;
             }
-            return array; 
+            catch (Exception ex)
+            {
+                // If an exception is thrown,
+                // the dynamic object given is most likely
+                // unable to be sorted.
+                throw new Exception(ex.StackTrace);
+            } 
         }
 
         /// <summary>
-        /// Preform a swap between two dynamic
+        /// Preform a swap between two strings
         /// objects.
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        private static void Swap(ref dynamic x, ref dynamic y)
+        public static void Swap(ref string x, ref string y)
+        { 
+            var temp = x;
+            x = y;
+            y = temp;
+        }
+
+        /// <summary>
+        /// Preform a swap between two integers
+        /// objects.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public static void Swap(ref int x, ref int y)
         {
-            dynamic temp = x;
+            // Swap Objects Without An 
+            // Addictional Variable. 
+            x = x + y;
+            y = x - y;
+            x = x - y;
+        }
+
+        /// <summary>
+        /// Preform a swap between two objects
+        /// objects.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public static void Swap(ref object x, ref object y)
+        {
+            var temp = x;
             x = y;
             y = temp;
         }
