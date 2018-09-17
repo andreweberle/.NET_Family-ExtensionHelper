@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -15,7 +16,7 @@ namespace EbbsSoft
     /// <summary>
     /// An Extension Helper For .Net Core
     /// </summary>
-    static class ExtensionHelper
+    public static class ExtensionHelper
     {   
         /// <summary>
         /// Output Style Required For For PrintColouredText
@@ -787,6 +788,48 @@ namespace EbbsSoft
                 DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
                 CopyAll(diSourceSubDir, nextTargetSubDir);
             }
+        }
+
+        /// <summary>
+        /// Returns A String To Title Case
+        /// Eg hello world --> Hello World
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string ToTitleCase(this string str)
+        {
+            if (str.Contains(' '))
+            {
+                StringBuilder sb = new StringBuilder();
+                string[] words = str.Split(' ');
+                foreach (string word in words)
+                {
+                    sb.Append(word.ToUpperInvariant() + " ");
+                }
+                sb.Length--;
+                return sb.ToString();
+            }
+            return str.ToUpperInvariant();
+        }
+
+        /// <summary>
+        /// Get the age from DateTime
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static int AgeFromDateTime(this DateTime dateTime)
+        {
+            // Todays Date
+            DateTime today = DateTime.Today;
+            // Get The Age
+            int age = today.Year - dateTime.Year;
+            // Check For Leap Year.
+            if (dateTime > today.AddYears(-age))
+            {
+                age--;
+            }
+            // Return The Age From DateTime.
+            return age;
         }
     }
 }
