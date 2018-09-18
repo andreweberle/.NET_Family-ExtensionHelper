@@ -804,12 +804,12 @@ namespace EbbsSoft
                 string[] words = str.Split(' ');
                 foreach (string word in words)
                 {
-                    sb.Append(word.ToUpperInvariant() + " ");
+                    sb.Append(word.Substring(0,1).ToUpper() + word.Substring(1, word.Length -1) + " ");
                 }
                 sb.Length--;
                 return sb.ToString();
             }
-            return str.ToUpperInvariant();
+            return str.Substring(0,1).ToUpper() + str.Substring(1, str.Length - 1);
         }
 
         /// <summary>
