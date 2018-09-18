@@ -14,7 +14,7 @@ using System.Xml.Linq;
 namespace EbbsSoft
 {
     /// <summary>
-    /// An Extension Helper For .Net Core
+    /// An Extension Helper For The .Net Family.
     /// </summary>
     public static class ExtensionHelper
     {   
