@@ -762,8 +762,8 @@ namespace EbbsSoft
         /// https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.aspx
         /// Call Method using eg CopyDirectory(sourceDir,destinationDir);
         /// </summary>
-        /// <param name="sourceDirectory"></param>
-        /// <param name="targetDirectory"></param>
+        /// <param name="sourceDirectory">Source Directory Path</param>
+        /// <param name="targetDirectory">Destination Directory Path</param>
         private static void _CopyDirectory(string sourceDirectory, string targetDirectory)
         {
             DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
@@ -794,7 +794,7 @@ namespace EbbsSoft
         /// Returns A String To Title Case
         /// Eg hello world --> Hello World
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="str">Value</param>
         /// <returns></returns>
         public static string ToTitleCase(this string str)
         {
@@ -815,7 +815,7 @@ namespace EbbsSoft
         /// <summary>
         /// Get the age from DateTime
         /// </summary>
-        /// <param name="dateTime"></param>
+        /// <param name="dateTime">Birthday</param>
         /// <returns></returns>
         public static int AgeFromDateTime(this DateTime dateTime)
         {
@@ -830,6 +830,28 @@ namespace EbbsSoft
             }
             // Return The Age From DateTime.
             return age;
+        }
+
+        /// <summary>
+        /// Validate An Australian Phone Number
+        /// eg 0354xxxxxx | 0412xxxxxx
+        /// </summary>
+        /// <param name="phoneNumber">Australian Phone Number</param>
+        /// <returns></returns>
+        public static bool IsValidPhoneNumber(this string phoneNumber)
+        {
+            if (phoneNumber.Length == 10 && phoneNumber.StartsWith("0"))
+            {
+                foreach (char c in phoneNumber)
+                {
+                    if (!char.IsDigit(c))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
         }
     }
 }

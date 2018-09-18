@@ -1,0 +1,9 @@
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\bin\Debug\netstandard2.0\EbbsSoft.deps.json
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\bin\Debug\netstandard2.0\EbbsSoft.dll
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\bin\Debug\netstandard2.0\EbbsSoft.pdb
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.csprojAssemblyReference.cache
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.csproj.CoreCompileInputs.cache
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.AssemblyInfoInputs.cache
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.AssemblyInfo.cs
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.dll
+C:\Users\WeRdNA\Documents\Projects\C#\.NetCore\DotNetCore-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.pdb
