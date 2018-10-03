@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "c22b642385d48d762f5da6b23b97b7c274d39392"
+    "signature": "a7f9228b053388d201322b29b3e852c19c1d1021"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,7 +10,8 @@
       "EbbsSoft/1.0.0": {
         "dependencies": {
           "Microsoft.Win32.Registry": "4.5.0",
-          "NETStandard.Library": "2.0.3"
+          "NETStandard.Library": "2.0.3",
+          "ZetaLongPaths": "1.0.0.25"
         },
         "runtime": {
           "EbbsSoft.dll": {}
@@ -91,6 +92,14 @@
             "fileVersion": "4.6.26515.6"
           }
         }
+      },
+      "ZetaLongPaths/1.0.0.25": {
+        "runtime": {
+          "lib/net452-full/ZetaLongPaths.dll": {
+            "assemblyVersion": "1.0.0.25",
+            "fileVersion": "1.0.0.25"
+          }
+        }
       }
     }
   },
@@ -162,6 +171,13 @@
       "sha512": "sha512-WA9ETb/pY3BjnxKjBUHEgO59B7d/nnmjHFsqjJ2eDT780nD769CT1/bw2ia0Z6W7NqlcqokE6sKGKa6uw88XGA==",
       "path": "system.security.principal.windows/4.5.0",
       "hashPath": "system.security.principal.windows.4.5.0.nupkg.sha512"
+    },
+    "ZetaLongPaths/1.0.0.25": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-h+vrd5mkqMJFAZZl1ftgxVQq+CL5o2hMUgQRgOqXnAyQ2PrZmLnEpEO56JsezHWk0zuLvW7mdXut1PcZ/7Q01w==",
+      "path": "zetalongpaths/1.0.0.25",
+      "hashPath": "zetalongpaths.1.0.0.25.nupkg.sha512"
     }
   }
 }

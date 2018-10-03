@@ -124,6 +124,15 @@
             "rid": "win"
           }
         }
+      },
+      "ZetaLongPaths/1.0.0.25": {
+        "type": "package",
+        "compile": {
+          "lib/net452-full/ZetaLongPaths.dll": {}
+        },
+        "runtime": {
+          "lib/net452-full/ZetaLongPaths.dll": {}
+        }
       }
     }
   },
@@ -517,12 +526,25 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "ZetaLongPaths/1.0.0.25": {
+      "sha512": "h+vrd5mkqMJFAZZl1ftgxVQq+CL5o2hMUgQRgOqXnAyQ2PrZmLnEpEO56JsezHWk0zuLvW7mdXut1PcZ/7Q01w==",
+      "type": "package",
+      "path": "zetalongpaths/1.0.0.25",
+      "files": [
+        ".signature.p7s",
+        "lib/net452-full/ZetaLongPaths.dll",
+        "lib/net452-full/ZetaLongPaths.pdb",
+        "zetalongpaths.1.0.0.25.nupkg.sha512",
+        "zetalongpaths.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "Microsoft.Win32.Registry >= 4.5.0",
-      "NETStandard.Library >= 2.0.3"
+      "NETStandard.Library >= 2.0.3",
+      "ZetaLongPaths >= 1.0.0.25"
     ]
   },
   "packageFolders": {
@@ -575,6 +597,10 @@
             "target": "Package",
             "version": "[2.0.3, )",
             "autoReferenced": true
+          },
+          "ZetaLongPaths": {
+            "target": "Package",
+            "version": "[1.0.0.25, )"
           }
         },
         "imports": [
@@ -584,5 +610,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'ZetaLongPaths 1.0.0.25' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "ZetaLongPaths",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
 }

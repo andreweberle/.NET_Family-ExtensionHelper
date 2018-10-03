@@ -8,9 +8,13 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using ZetaLongPaths;
 
+
+// TOD: Load Assembly For ZetaLongPaths.
 namespace EbbsSoft
 {
     /// <summary>
@@ -812,6 +816,36 @@ namespace EbbsSoft
             return str.Substring(0,1).ToUpper() + str.Substring(1, str.Length - 1);
         }
 
+        /// <Summary>
+        /// Return the given string with camel casing.
+        /// </Summary>
+        /// <param name="str">Value</param>
+        /// <returns>string [CamelCase]</returns>
+        public static string ToCamelCase(this string str)
+        {
+            if (str.Contains(' '))
+            {
+                bool firstLoopComplete = false;
+                StringBuilder sb = new StringBuilder();   
+                string[] words = str.Split(' ');
+                foreach (string word in words)
+                {
+                    if (!firstLoopComplete)
+                    {
+                        sb.Append(word + " ");
+                        firstLoopComplete = true;
+                    }
+                    else
+                    {
+                        sb.Append(word[0].ToString().ToUpper() + word.Substring(1, word.Length -1) + " ");
+                    }
+                }
+                sb.Length--;
+                return sb.ToString();
+            }
+            return str;
+        }
+
         /// <summary>
         /// Get the age from DateTime
         /// </summary>
@@ -839,6 +873,7 @@ namespace EbbsSoft
         /// <param name="phoneNumber">Australian Phone Number</param>
         /// <returns></returns>
         public static bool IsValidPhoneNumber(this string phoneNumber)
+        
         {
             if (phoneNumber.Length == 10 && phoneNumber.StartsWith("0"))
             {
@@ -852,6 +887,52 @@ namespace EbbsSoft
                 return true;
             }
             return false;
+        }
+
+        /// <Summary>
+        /// Returns the file's creator
+        /// </Summary>
+        /// <param name="fileInfo">FileInfo Object</param>
+        /// <returns></returns>
+        public static string Owner(this FileInfo fileInfo)
+        {
+            var zetaFileinfo = new ZlpFileInfo(fileInfo);
+            return zetaFileinfo.Owner;
+        }
+
+        /// <Summary>
+        /// Returns the file's creator
+        /// </Summary>
+        /// <param name="zetaFileInfo">ZetaFileInfo Object</param>
+        /// <returns></returns>
+        public static string Owner(this ZlpFileInfo zetaFileInfo) => zetaFileInfo.Owner;
+
+        /// <Summary>
+        /// System File Watcher
+        /// </Summary>
+        public static string WatchPath(this string path, string filter = "*.*")
+        {
+            // Create a new thread to help
+            // the application from becoming unresponsive.
+            Task task = Task.Run(() =>
+            {
+                // Create a file watcher object.
+                var fileWatcher = new FileSystemWatcher(path)
+                {
+                    Filter = filter,
+                    EnableRaisingEvents = true
+                };
+                string msg = null;
+
+                // Event for when a file is created in
+                // the given path.
+                fileWatcher.Created += (sender,e) =>
+                {
+                    msg = string.Format("{0} has been created at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
+                    Console.WriteLine(msg);
+                };
+            });
+            return null;
         }
     }
 }
