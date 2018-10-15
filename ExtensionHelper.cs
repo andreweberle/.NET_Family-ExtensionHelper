@@ -13,8 +13,7 @@ using System.Xml;
 using System.Xml.Linq;
 using ZetaLongPaths;
 
-
-// TOD: Load Assembly For ZetaLongPaths.
+// TODO: Load Assembly For ZetaLongPaths.
 namespace EbbsSoft
 {
     /// <summary>
