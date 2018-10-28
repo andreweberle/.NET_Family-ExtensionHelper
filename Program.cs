@@ -9,6 +9,10 @@ namespace MyApplication
     {
         static void Main()
         {
+            Console.WriteLine("Hello World".PrintColouredText(ConsoleColor.Green));
+
+            
+
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string fileName = "foo.txt";
             string fullPath = System.IO.Path.Combine(desktopPath,fileName);

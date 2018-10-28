@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -894,7 +895,7 @@ namespace EbbsSoft
         /// <param name="fileInfo">FileInfo Object</param>
         /// <returns></returns>
         public static string Owner(this FileInfo fileInfo)
-        {
+        {            
             var zetaFileinfo = new ZlpFileInfo(fileInfo);
             return zetaFileinfo.Owner;
         }
@@ -933,5 +934,33 @@ namespace EbbsSoft
             });
             return null;
         }
+
+        /// <Summary>
+        /// Check If The Given File Path
+        /// Is Locked/Not Useable
+        /// </Summary>
+        public static bool IsFileLocked(this string filePath)
+        {
+            // Check if the file path is valid.
+            if (filePath.IsValidFilePath())
+            {
+                try
+                {
+                    using (System.IO.FileStream fs = new System.IO.FileStream(filePath, System.IO.FileMode.Open, FileAccess.Read))
+                    {
+                        return false;
+                    }
+                }
+                catch
+                {
+                    // if the above function fails,
+                    // we will return true as that
+                    // means the file is indeed locked.
+                    return true;
+                }
+            }
+            Console.WriteLine("The given file path does not exist".PrintColouredText(ConsoleColor.Red));
+            return true;
+        }   
     }
 }
