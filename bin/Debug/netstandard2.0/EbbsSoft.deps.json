@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "6205bf986c7562fcc56a96ff733488d3cdb9bc64"
+    "signature": "474bea8c9cbca4653cbafd48f9415a4b10acd7c1"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,7 +11,7 @@
         "dependencies": {
           "Microsoft.Win32.Registry": "4.5.0",
           "NETStandard.Library": "2.0.3",
-          "ZetaLongPaths": "1.0.0.25",
+          "ZetaLongPaths": "1.0.0.27",
           "ZetaLongPaths.NetStandard": "1.0.0.25"
         },
         "runtime": {
@@ -289,11 +289,11 @@
           }
         }
       },
-      "ZetaLongPaths/1.0.0.25": {
+      "ZetaLongPaths/1.0.0.27": {
         "runtime": {
           "lib/net452-full/ZetaLongPaths.dll": {
-            "assemblyVersion": "1.0.0.25",
-            "fileVersion": "1.0.0.25"
+            "assemblyVersion": "1.0.0.27",
+            "fileVersion": "1.0.0.27"
           }
         }
       },
@@ -556,12 +556,12 @@
       "path": "system.threading.thread/4.0.0",
       "hashPath": "system.threading.thread.4.0.0.nupkg.sha512"
     },
-    "ZetaLongPaths/1.0.0.25": {
+    "ZetaLongPaths/1.0.0.27": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-h+vrd5mkqMJFAZZl1ftgxVQq+CL5o2hMUgQRgOqXnAyQ2PrZmLnEpEO56JsezHWk0zuLvW7mdXut1PcZ/7Q01w==",
-      "path": "zetalongpaths/1.0.0.25",
-      "hashPath": "zetalongpaths.1.0.0.25.nupkg.sha512"
+      "sha512": "sha512-9yazRFURs+9gRF2SBHhUcEobCbosEWbJ/2LfqGvUlwOZhSTaFFwj2IiT1rQjoNQ/kgoTcIJRK1Wvc+Ne/QaxfQ==",
+      "path": "zetalongpaths/1.0.0.27",
+      "hashPath": "zetalongpaths.1.0.0.27.nupkg.sha512"
     },
     "ZetaLongPaths.NetStandard/1.0.0.25": {
       "type": "package",

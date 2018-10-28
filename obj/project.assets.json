@@ -2201,11 +2201,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Andrew Eberle\\Documents\\Visual Code\\C#\\EbbsSoft\\EbbsSoft.csproj",
+      "projectUniqueName": "C:\\Users\\Andrew Eberle\\Documents\\Visual Code\\C#\\EbbsSoft\\EbbsSoft.csproj",
       "projectName": "EbbsSoft",
-      "projectPath": "c:\\Users\\Andrew Eberle\\Documents\\Visual Code\\C#\\EbbsSoft\\EbbsSoft.csproj",
+      "projectPath": "C:\\Users\\Andrew Eberle\\Documents\\Visual Code\\C#\\EbbsSoft\\EbbsSoft.csproj",
       "packagesPath": "C:\\Users\\Andrew Eberle\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Andrew Eberle\\Documents\\Visual Code\\C#\\EbbsSoft\\obj\\",
+      "outputPath": "C:\\Users\\Andrew Eberle\\Documents\\Visual Code\\C#\\EbbsSoft\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
