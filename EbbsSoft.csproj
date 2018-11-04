@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
     <PackageReference Include="ZetaLongPaths" Version="1.0.0.27" />
-    <PackageReference Include="ZetaLongPaths.NetStandard" Version="1.0.0.25" />
+    <PackageReference Include="ZetaLongPaths.NetStandard" Version="1.0.0.27" />
   </ItemGroup>
 
 </Project>

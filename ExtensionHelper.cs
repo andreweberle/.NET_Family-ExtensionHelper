@@ -961,6 +961,68 @@ namespace EbbsSoft
             }
             Console.WriteLine("The given file path does not exist".PrintColouredText(ConsoleColor.Red));
             return true;
-        }   
+        }
+
+        /// <summary>
+        /// Check For Empty String
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsEmpty(this string str)
+        {
+            if (String.IsNullOrWhiteSpace(str))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Check String For Only Digits
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsDigitsOnly(this string str)
+        {
+            foreach (char c in str)
+            {
+                if (!Char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Validate Luhun (Mod10)
+        /// </summary>
+        /// <param name="sum"></param>
+        /// <returns></returns>
+        public static bool ValidateLuhn(this string sum)
+        {
+            // check whether input string is null or empty
+            if (!sum.IsDigitsOnly() && !sum.IsEmpty())
+            {
+                return false;
+            }
+
+            int digits = sum.Where((e) => e >= '0' && e <= '9')
+                            .Reverse()
+                            .Select((e, i) => (e - 48) * (i % 2 == 0 ? 1 : 2))
+                            .Sum((e) => e / 10 + e % 10);
+                            
+            return digits % 10 == 0;
+        }
+
+        /// <summary>
+        /// Validate Luhn (Mod10)
+        /// </summary>
+        /// <param name="sum"></param>
+        /// <returns></returns>
+        public static bool ValidateLuhn(this int sum)
+        {
+            return ValidateLuhn(Convert.ToString(sum));
+        }
     }
 }

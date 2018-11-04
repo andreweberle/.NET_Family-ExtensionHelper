@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "474bea8c9cbca4653cbafd48f9415a4b10acd7c1"
+    "signature": "03ba054aa96dc08258f9cb71fc98b017c9181fc1"
   },
   "compilationOptions": {},
   "targets": {
@@ -12,7 +12,7 @@
           "Microsoft.Win32.Registry": "4.5.0",
           "NETStandard.Library": "2.0.3",
           "ZetaLongPaths": "1.0.0.27",
-          "ZetaLongPaths.NetStandard": "1.0.0.25"
+          "ZetaLongPaths.NetStandard": "1.0.0.27"
         },
         "runtime": {
           "EbbsSoft.dll": {}
@@ -297,7 +297,7 @@
           }
         }
       },
-      "ZetaLongPaths.NetStandard/1.0.0.25": {
+      "ZetaLongPaths.NetStandard/1.0.0.27": {
         "dependencies": {
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections": "4.0.11",
@@ -377,7 +377,7 @@
     "System.Buffers/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-AwarXzzoDwX6BgrhjoJsk6tUezZEozOT5Y9QKF94Gl4JK91I4PIIBkBco9068Y9/Dra8Dkbie99kXB8+1BaYKw==",
+      "sha512": "sha512-VCJfpWcYG1gT3WwivZWgT0KaqY678MQBvrOI2si6V8GHeQOtuW+wpiv5ss4KyfGG+cFFdPNaI+nw2/kExCtGgQ==",
       "path": "system.buffers/4.4.0",
       "hashPath": "system.buffers.4.4.0.nupkg.sha512"
     },
@@ -398,7 +398,7 @@
     "System.Diagnostics.TraceSource/4.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6WVCczFZKXwpWpzd/iJkYnsmWTSFFiU24Xx/YdHXBcu+nFI/ehTgeqdJQFbtRPzbrO3KtRNjvkhtj4t5/WwWsA==",
+      "sha512": "sha512-bGUeY5wiCHYSWbYZS3QjbaQ1hNoJ1RQBQMB3E0Cgh6AH//4rXfXIOHKIW46HDOsTEDoNfvFNDXphL5W5B/XMwQ==",
       "path": "system.diagnostics.tracesource/4.0.0",
       "hashPath": "system.diagnostics.tracesource.4.0.0.nupkg.sha512"
     },
@@ -440,14 +440,14 @@
     "System.Memory/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-P56/L4B9vhz0YFTC4qIXFgx+VgMhg3JhCm5/EASihTotyjwmBt2QEAQdmd2tNctYET/w0CRJzVH1cwxgbKGnDQ==",
+      "sha512": "sha512-ULODiqdq81e9YfQS/GL4P5zgek90jyPykAV4t1Sp4sjID3/Ebi18lbvOKm+81biHR5a5FdFRXSU/JVc6nxr/7A==",
       "path": "system.memory/4.5.0",
       "hashPath": "system.memory.4.5.0.nupkg.sha512"
     },
     "System.Numerics.Vectors/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UiLzLW+Lw6HLed1Hcg+8jSRttrbuXv7DANVj0DkL9g6EnnzbL75EB7EWsw5uRbhxd/4YdG8li5XizGWepmG3PQ==",
+      "sha512": "sha512-ZhdgJiihSOGD325jClouHy8WSPtwFSj6K1OymoEyN0Wc9Y6X2OVxn65VKfTWHQOYM+QljlVSreporVNvZm8rEA==",
       "path": "system.numerics.vectors/4.4.0",
       "hashPath": "system.numerics.vectors.4.4.0.nupkg.sha512"
     },
@@ -552,7 +552,7 @@
     "System.Threading.Thread/4.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gIdJqDXlOr5W9zeqFErLw3dsOsiShSCYtF9SEHitACycmvNvY8odf9kiKvp6V7aibc8C4HzzNBkWXjyfn7plbQ==",
+      "sha512": "sha512-Tlo/QJ5w4UhgO7Abxz3k9LL/nfQ9/2ioc88cQIMOjNhzK1QGJvvH+A6w5Sx+u99D6lgR+1Nj1YZ9/lknR963kQ==",
       "path": "system.threading.thread/4.0.0",
       "hashPath": "system.threading.thread.4.0.0.nupkg.sha512"
     },
@@ -563,12 +563,12 @@
       "path": "zetalongpaths/1.0.0.27",
       "hashPath": "zetalongpaths.1.0.0.27.nupkg.sha512"
     },
-    "ZetaLongPaths.NetStandard/1.0.0.25": {
+    "ZetaLongPaths.NetStandard/1.0.0.27": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+z6ifjTsRfX75//S3PeBJc/peBZo7ZYnlgFU1XJdPEJrPUi/OYmYu1bhbnAqNlE/Nhq4zgwp2uRmS4+z7IUsVQ==",
-      "path": "zetalongpaths.netstandard/1.0.0.25",
-      "hashPath": "zetalongpaths.netstandard.1.0.0.25.nupkg.sha512"
+      "sha512": "sha512-QbmS8H4jEGdtAHWhYYoM9PzKR6DQNaF0HAPXw4RcRsdCsydnTYBs4gaDhaVSmQThkXalMGe7+qPUT6ShvAbxng==",
+      "path": "zetalongpaths.netstandard/1.0.0.27",
+      "hashPath": "zetalongpaths.netstandard.1.0.0.27.nupkg.sha512"
     }
   }
 }
