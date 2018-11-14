@@ -2205,11 +2205,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\FS1\\UserData2$\\andrew.eberle\\My Documents\\GitHub\\.NET_Family-ExtensionHelper\\EbbsSoft.csproj",
+      "projectUniqueName": "\\\\fs1\\UserData2$\\andrew.eberle\\My Documents\\GitHub\\.NET_Family-ExtensionHelper\\EbbsSoft.csproj",
       "projectName": "EbbsSoft",
-      "projectPath": "\\\\FS1\\UserData2$\\andrew.eberle\\My Documents\\GitHub\\.NET_Family-ExtensionHelper\\EbbsSoft.csproj",
+      "projectPath": "\\\\fs1\\UserData2$\\andrew.eberle\\My Documents\\GitHub\\.NET_Family-ExtensionHelper\\EbbsSoft.csproj",
       "packagesPath": "C:\\Users\\andrew.eberle\\.nuget\\packages\\",
-      "outputPath": "\\\\FS1\\UserData2$\\andrew.eberle\\My Documents\\GitHub\\.NET_Family-ExtensionHelper\\obj\\",
+      "outputPath": "\\\\fs1\\UserData2$\\andrew.eberle\\My Documents\\GitHub\\.NET_Family-ExtensionHelper\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

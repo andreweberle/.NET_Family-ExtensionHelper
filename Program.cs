@@ -9,7 +9,7 @@ namespace MyApplication
     {
         static void Main()
         {
-            Console.WriteLine("79927398713".ValidateLuhn());
+            Console.WriteLine("4017954099605967".ValidateLuhn());
             Console.ReadKey();
         }
     }

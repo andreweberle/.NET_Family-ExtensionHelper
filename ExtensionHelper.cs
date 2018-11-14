@@ -1002,7 +1002,7 @@ namespace EbbsSoft
         public static bool ValidateLuhn(this string sum)
         {
             // check whether input string is null or empty
-            if (!sum.IsDigitsOnly() && !sum.IsEmpty())
+            if (!sum.IsDigitsOnly() || !sum.IsEmpty())
             {
                 return false;
             }
@@ -1043,5 +1043,12 @@ namespace EbbsSoft
                 return ms.ToArray();
             }
         }
+
+        /// <summary>
+        /// Check If Given Number Is An Odd Number
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsOdd(this int value) => value % 2 != 0;
     }
 }
