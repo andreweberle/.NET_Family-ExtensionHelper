@@ -9,12 +9,13 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using ZetaLongPaths;
+using iTextSharp.text.pdf;
 
-// TODO: Load Assembly For ZetaLongPaths.
 namespace EbbsSoft
 {
     /// <summary>
@@ -320,13 +321,13 @@ namespace EbbsSoft
         /// Compare File Versions
         /// </summary>
         /// <param name="filePath0"></param>
-        /// <param name="filePath"></param>
+        /// <param name="filePath1"></param>
         /// <returns></returns>
-        public static bool CompareFileVersionTo(this string filePath0, string filePath)
+        public static bool CompareFileVersionTo(this string filePath0, string filePath1)
         {
             // Create a file version object from the give path
             FileVersionInfo fV1 = FileVersionInfo.GetVersionInfo(filePath0);
-            FileVersionInfo fV2 = FileVersionInfo.GetVersionInfo(filePath);
+            FileVersionInfo fV2 = FileVersionInfo.GetVersionInfo(filePath1);
 
             // Create a Version Object from the FileVersionInfo Object
             Version v1 = new Version(fV1.FileMajorPart, fV1.FileMinorPart, fV1.FileBuildPart);
@@ -1050,5 +1051,108 @@ namespace EbbsSoft
         /// <param name="value"></param>
         /// <returns></returns>
         public static bool IsOdd(this int value) => value % 2 != 0;
+
+        /// <summary>
+        /// Extract A Hyper Link From an ahref property.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static string ExtractHyperLinkFromData(this string data)
+        {
+            return XElement.Parse(data)
+                            .Descendants("a")
+                            .Select(x => x.Attribute("href").Value)
+                            .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Is File Read Only?
+        /// </summary>
+        /// <param name="fileInfo"></param>
+        /// <returns></returns>
+        public static bool IsReadOnly(this FileInfo fileInfo)
+        {
+            return fileInfo.IsReadOnly;
+        }
+
+        /// <summary>
+        /// Is File Read Only
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static bool IsReadOnly (this string filePath)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            return fileInfo.IsReadOnly;
+        }
+
+        /// <summary>
+        /// Change File To Read Only
+        /// </summary>
+        /// <param name="fileInfo"></param>
+        /// <returns></returns>
+        public static bool AddReadOnlyAttribute(this FileInfo fileInfo)
+        {
+            fileInfo.IsReadOnly = true;
+            return IsReadOnly(fileInfo);
+        }
+
+        /// <summary>
+        /// Change File To Read Only
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static bool AddReadOnlyAttribute(this string filePath)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            fileInfo.IsReadOnly = true;
+            return IsReadOnly(fileInfo);
+        }
+        
+        /// <summary>
+        /// Remove Read Only Property
+        /// </summary>
+        /// <param name="fileInfo"></param>
+        /// <returns></returns>
+        public static bool RemoveReadOnlyAttribute(this FileInfo fileInfo)
+        {
+            fileInfo.IsReadOnly = false;
+            return IsReadOnly(fileInfo);
+        }
+
+        /// <summary>
+        /// Remove Read Only Property
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static bool RemoveReadOnlyAttribute(this string filePath)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            fileInfo.IsReadOnly = false;
+            return IsReadOnly(fileInfo);
+        }
+
+        /// <summary>
+        /// Remove Illegal Chars From Path
+        /// [ File Name May Not Be Included ]
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string RemoveIllegalCharsFromPath(this string str)
+        {
+            return Path.GetInvalidPathChars()
+                       .Aggregate(str, (current, c) => current.Replace(c.ToString(), ""));
+        }
+    
+        public static string ExtractTextFromPDF(this string pdf_File)
+        {
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+            {
+                iTextSharp.text.pdf.PdfReader pdfReader = new iTextSharp.text.pdf.PdfReader(pdf_File);
+                StringBuilder text = new StringBuilder();
+                var t = pdfReader.GetPageContent(pdfReader.NumberOfPages);
+                return System.Text.Encoding.UTF8.GetString(t);
+            }
+        }
     }
 }
