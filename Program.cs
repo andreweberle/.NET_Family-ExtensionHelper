@@ -9,8 +9,8 @@ namespace MyApplication
     {
         static void Main()
         {
-            EbbsSoft.ExtensionHelper.ExtractTextFromPDF("C:\\Users\\andrew.eberle\\Downloads\\imposition_documentation_2018-11-19_1758.pdf");
-            Console.ReadKey();
+            //EbbsSoft.ExtensionHelper.ExtractTextFromPDF("C:\\Users\\andrew.eberle\\Downloads\\imposition_documentation_2018-11-19_1758.pdf");
+            //Console.ReadKey();
         }
     }
 }

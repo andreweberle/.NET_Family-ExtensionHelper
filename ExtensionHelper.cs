@@ -15,6 +15,7 @@ using System.Xml;
 using System.Xml.Linq;
 using ZetaLongPaths;
 using iTextSharp.text.pdf;
+using System.Xml.Serialization;
 
 namespace EbbsSoft
 {
@@ -270,13 +271,13 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="textFilePath">Destination Of File</param>
         /// <param name="givenParameters"></param>
-        public static bool WriteToTextFile(this string textFilePath, string givenParameters)
+        public static bool WriteToTextFile(this string textFilePath, string givenParameters, bool AppendText)
         {
             if (textFilePath.IsValidFilePath())
             {
                 try
                 {
-                    using (StreamWriter sw = new StreamWriter(textFilePath))
+                    using (StreamWriter sw = new StreamWriter(textFilePath,AppendText))
                     {
                         sw.WriteLine(givenParameters);
                     }
@@ -1143,7 +1144,12 @@ namespace EbbsSoft
             return Path.GetInvalidPathChars()
                        .Aggregate(str, (current, c) => current.Replace(c.ToString(), ""));
         }
-    
+
+        /// <summary>
+        /// TEST
+        /// </summary>
+        /// <param name="pdf_File"></param>
+        /// <returns></returns>
         public static string ExtractTextFromPDF(this string pdf_File)
         {
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
@@ -1153,6 +1159,43 @@ namespace EbbsSoft
                 var t = pdfReader.GetPageContent(pdfReader.NumberOfPages);
                 return System.Text.Encoding.UTF8.GetString(t);
             }
+        }
+
+        /// <summary>
+        /// Byte Array To Memory Stream
+        /// </summary>
+        /// <param name="byteArray"></param>
+        /// <returns></returns>
+        public static Stream ToMemoryStream(this byte[] byteArray)
+        {
+            return new MemoryStream(byteArray);
+        }
+    
+        /// <summary>
+        /// Convert an Object To XML
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string ConvertToXML(this object obj)
+        {
+            try
+            {
+                using (System.IO.StringWriter sw = new System.IO.StringWriter())
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
+                    xmlSerializer.Serialize(sw, obj);
+                    return sw.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    
+        public static bool IsEmpty<T>(this List<T> list)
+        {
+            return list.Count > 0 ? false : true;
         }
     }
 }
