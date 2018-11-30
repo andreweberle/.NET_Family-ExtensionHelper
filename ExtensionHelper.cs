@@ -1176,15 +1176,15 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static string ConvertToXML(this object obj)
+        public static string ConvertToCXML(this object obj)
         {
             try
             {
-                using (System.IO.StringWriter sw = new System.IO.StringWriter())
+                using (StringWriter sw = new StringWriter())
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
                     xmlSerializer.Serialize(sw, obj);
-                    return sw.ToString();
+                    return sw.ToString().Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE cXML SYSTEM \"http://xml.cXML.org/schemas/cXML/1.2.021/cXML.dtd\">");
                 }
             }
             catch (Exception ex)
@@ -1196,6 +1196,11 @@ namespace EbbsSoft
         public static bool IsEmpty<T>(this List<T> list)
         {
             return list.Count > 0 ? false : true;
+        }
+
+        public static MemoryStream ToMemoryStream(this string value)
+        {
+            return new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
         }
     }
 }
