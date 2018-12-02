@@ -1202,5 +1202,10 @@ namespace EbbsSoft
         {
             return new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
         }
+
+        public static string ToCurrency(this object value)
+        {
+            return string.Format("{0:C}",value);
+        }
     }
 }
