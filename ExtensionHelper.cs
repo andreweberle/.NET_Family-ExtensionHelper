@@ -1176,7 +1176,7 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static string ConvertToCXML(this object obj)
+        public static string ToCXML(this object obj)
         {
             try
             {
@@ -1192,17 +1192,33 @@ namespace EbbsSoft
                 throw new Exception(ex.Message);
             }
         }
-    
+
+        /// <summary>
+        /// Check if a T type list is empty.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static bool IsEmpty<T>(this List<T> list)
         {
             return list.Count > 0 ? false : true;
         }
 
+        /// <summary>
+        /// return a string to a utf-8 memory stream.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static MemoryStream ToMemoryStream(this string value)
         {
             return new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
         }
 
+        /// <summary>
+        /// Attempt To Convert the object
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string ToCurrency(this object value)
         {
             return string.Format("{0:C}",value);
