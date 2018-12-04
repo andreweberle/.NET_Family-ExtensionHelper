@@ -16,6 +16,7 @@ using System.Xml.Linq;
 using ZetaLongPaths;
 using iTextSharp.text.pdf;
 using System.Xml.Serialization;
+using System.Data.SqlClient;
 
 namespace EbbsSoft
 {
@@ -875,7 +876,6 @@ namespace EbbsSoft
         /// <param name="phoneNumber">Australian Phone Number</param>
         /// <returns></returns>
         public static bool IsValidPhoneNumber(this string phoneNumber)
-        
         {
             if (phoneNumber.Length == 10 && phoneNumber.StartsWith("0"))
             {
@@ -914,27 +914,61 @@ namespace EbbsSoft
         /// </Summary>
         public static string WatchPath(this string path, string filter = "*.*")
         {
-            // Create a new thread to help
-            // the application from becoming unresponsive.
-            Task task = Task.Run(() =>
-            {
-                // Create a file watcher object.
-                var fileWatcher = new FileSystemWatcher(path)
-                {
-                    Filter = filter,
-                    EnableRaisingEvents = true
-                };
-                string msg = null;
+            bool breakOut = false;
 
-                // Event for when a file is created in
-                // the given path.
-                fileWatcher.Created += (sender,e) =>
+            do
+            {
+                // Create a new thread to help
+                // the application from becoming unresponsive.
+                Task task = Task.Run(() =>
                 {
-                    msg = string.Format("{0} has been created at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
-                    Console.WriteLine(msg);
-                };
-            });
-            return null;
+                    // Create a file watcher object.
+                    var fileWatcher = new FileSystemWatcher(path)
+                    {
+                        Filter = filter,
+                        EnableRaisingEvents = true
+                    };
+                    string msg = null;
+
+                    fileWatcher.Created += (sender,e) =>
+                    {
+                        msg = string.Format("{0} has been created at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
+                        Console.WriteLine(msg);
+                    };
+
+                    fileWatcher.Deleted += (sender, e) =>
+                    {
+                        msg = string.Format("{0} has been deleted at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
+                        Console.WriteLine(msg);
+                    };
+
+                    fileWatcher.Changed += (sender, e) =>
+                    {
+                        msg = string.Format("{0} has been changed at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
+                        Console.WriteLine(msg);
+                    };
+
+                    fileWatcher.Renamed += (sender, e) =>
+                    {
+                        msg = string.Format("{0} has been renamed at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
+                        Console.WriteLine(msg);
+                    };
+
+                    fileWatcher.Error += (sender, e) =>
+                    {
+                        msg = string.Format("Error : {0}", e.GetException());
+                        Console.WriteLine(msg);
+                    };
+
+                    fileWatcher.Disposed += (sender, e) =>
+                    {
+                        msg = string.Format("No Longer Watching : {0}", path);
+                        Console.WriteLine(msg);
+                    };
+                });
+            }
+            while (!breakOut);
+            return null; // exit with null;
         }
 
         /// <Summary>
@@ -1205,23 +1239,94 @@ namespace EbbsSoft
         }
 
         /// <summary>
-        /// return a string to a utf-8 memory stream.
+        /// return a string to a memory stream.
         /// </summary>
         /// <param name="value"></param>
+        /// <param name="encodingType"></param>
         /// <returns></returns>
-        public static MemoryStream ToMemoryStream(this string value)
+        public static MemoryStream ToMemoryStream(this string value, EncodingFormat encodingType)
         {
-            return new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
+            switch (encodingType)
+            {
+                case EncodingFormat.UTF7:
+                    return new MemoryStream(Encoding.UTF7.GetBytes(value ?? ""));
+                case EncodingFormat.UTF8:
+                    return new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
+                case EncodingFormat.UT32:
+                    return new MemoryStream(Encoding.UTF32.GetBytes(value ?? ""));
+                case EncodingFormat.UNICODE:
+                    return new MemoryStream(Encoding.Unicode.GetBytes(value ?? ""));
+                case EncodingFormat.ASCII:
+                    return new MemoryStream(Encoding.ASCII.GetBytes(value ?? ""));
+                    default:
+                    return null;
+            }
         }
 
         /// <summary>
-        /// Attempt To Convert the object
+        /// Convert a string to a currency Format
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToCurrency(this object value)
+        public static string ToCurrency(this string value)
         {
             return string.Format("{0:C}",value);
+        }
+
+        /// <summary>
+        /// Convert an int to a currency Format
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ToCurrency(this int value)
+        {
+            return string.Format("{0:C}",value);
+        }
+
+        /// <summary>
+        /// Convert a double to a currency Format
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ToCurrency(this double value)
+        {
+            return string.Format("{0:C}",value);
+        }
+
+        /// <summary>
+        /// Convert a decimal to a currency Format
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ToCurrency(this decimal value)
+        {
+            return string.Format("{0:C}",value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sqlConn">Connection To SQL Database</param>
+        /// <param name="tableName">TableName</param>
+        /// <param name="seed">Seed Starting Point</param>
+        /// <returns></returns>
+        public static async Task<bool> ResetTableSeed(this SqlConnection sqlConn, string tableName, int seed)
+        {
+            string RESET_SEED = $"DBCC CHECKIDENT ('[{tableName}]', RESEED, @value)";
+            SqlCommand sqlCommand = new SqlCommand(RESET_SEED, sqlConn);
+            sqlCommand.Parameters.AddWithValue("@value",seed.ToString());
+            using (SqlConnection sqlConnection = new SqlConnection(sqlConn.ConnectionString))
+            {
+                try
+                {
+                    await sqlConnection.OpenAsync();
+                    return sqlCommand.ExecuteNonQuery() > 1 ? true : false;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
         }
     }
 }
