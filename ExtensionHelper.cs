@@ -1328,5 +1328,47 @@ namespace EbbsSoft
                 }
             }
         }
+    
+        public static DateTime AddWorkingDays(this DateTime date, int addDays)
+        {
+            int temp = addDays < 0 ? -1 : 1;
+            DateTime newDate = date;
+            while (addDays != 0)
+            {
+                newDate = newDate.AddDays(temp);
+                if (newDate.DayOfWeek != DayOfWeek.Saturday && newDate.DayOfWeek != DayOfWeek.Sunday && !newDate.IsHoliday())
+                {
+                    addDays -= temp;
+                }
+            }
+            return newDate;
+        }
+    
+        public static bool IsHoliday(this DateTime date)
+        {
+            // Add them here.
+            // getting the values from a database would be better.
+            DateTime[] holidays = new DateTime[] 
+            { 
+                new DateTime(DateTime.Now.Year,12,25), // christmas
+                new DateTime(DateTime.Now.Year,12,26), // boxing day
+                new DateTime(DateTime.Now.Year,01,01), // new years day.
+            };
+            return holidays.Contains(date.Date);
+        }
+
+        /// <summary>
+        /// Split a string in parts
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="numberOfParts"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> SplitInPartsOf(this string value, int numberOfParts)
+        {
+            for (int i = 0; i < value.Length; i += numberOfParts)
+            {
+                yield return value.Substring(i, Math.Min(numberOfParts, value.Length -i));
+            }
+        }
     }
 }
