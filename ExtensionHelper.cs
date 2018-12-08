@@ -1343,11 +1343,14 @@ namespace EbbsSoft
             }
             return newDate;
         }
-    
+
+        /// <summary>
+        /// Check If Its a Public Holiday
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static bool IsHoliday(this DateTime date)
         {
-            // Add them here.
-            // getting the values from a database would be better.
             DateTime[] holidays = new DateTime[] 
             { 
                 new DateTime(DateTime.Now.Year,12,25), // christmas
