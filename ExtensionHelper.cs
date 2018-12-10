@@ -272,27 +272,24 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="textFilePath">Destination Of File</param>
         /// <param name="givenParameters"></param>
-        public static bool WriteToTextFile(this string textFilePath, string givenParameters, bool AppendText)
+        public static bool WriteToTextFile(this string textFilePath, string data, bool AppendText)
         {
-            if (textFilePath.IsValidFilePath())
+            if (!textFilePath.IsValidFilePath())
             {
-                try
-                {
-                    using (StreamWriter sw = new StreamWriter(textFilePath,AppendText))
-                    {
-                        sw.WriteLine(givenParameters);
-                    }
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Can not write File " + textFilePath + "  :" + ex.Message);
-                    return false;
-                }
+                textFilePath.CreateTextFile();
             }
-            else
+            
+            try
             {
-                Console.WriteLine("Invalid Path");
+                using (StreamWriter sw = new StreamWriter(textFilePath,AppendText))
+                {
+                    sw.WriteLine(data);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Can not write File " + textFilePath + "  :" + ex.Message);
                 return false;
             }
         }
@@ -1304,7 +1301,7 @@ namespace EbbsSoft
         }
 
         /// <summary>
-        /// 
+        /// Reset a Tables Seed.
         /// </summary>
         /// <param name="sqlConn">Connection To SQL Database</param>
         /// <param name="tableName">TableName</param>
@@ -1328,7 +1325,13 @@ namespace EbbsSoft
                 }
             }
         }
-    
+
+        /// <summary>
+        /// Add & Count Only Business Days.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="addDays"></param>
+        /// <returns></returns>
         public static DateTime AddWorkingDays(this DateTime date, int addDays)
         {
             int temp = addDays < 0 ? -1 : 1;
