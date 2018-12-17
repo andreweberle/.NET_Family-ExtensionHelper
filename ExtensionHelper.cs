@@ -1354,11 +1354,22 @@ namespace EbbsSoft
         /// <returns></returns>
         public static bool IsHoliday(this DateTime date)
         {
+            // Victoria Australia, Public Holidays.
             DateTime[] holidays = new DateTime[] 
             { 
-                new DateTime(DateTime.Now.Year,12,25), // christmas
-                new DateTime(DateTime.Now.Year,12,26), // boxing day
-                new DateTime(DateTime.Now.Year,01,01), // new years day.
+                new DateTime(DateTime.Now.Year,01,01), // New Year's Day.
+                new DateTime(DateTime.Now.Year,01,28), // Australia Day Holiday.
+                new DateTime(DateTime.Now.Year,03,11), // Labour Day.
+                new DateTime(DateTime.Now.Year,04,19), // Good Friday.
+                new DateTime(DateTime.Now.Year,04,20), // Day following Good Friday.
+                new DateTime(DateTime.Now.Year,04,21), // Easter Sunday.
+                new DateTime(DateTime.Now.Year,04,22), // Easter Monday.
+                new DateTime(DateTime.Now.Year,04,25), // Anzac Day
+                new DateTime(DateTime.Now.Year,06,10), // Queen's Birthday
+                new DateTime(DateTime.Now.Year,09,27), // AFL Grand Final Friday
+                new DateTime(DateTime.Now.Year,10,05), // Melbourne Cup Day *
+                new DateTime(DateTime.Now.Year,12,25), // Christmas Day
+                new DateTime(DateTime.Now.Year,12,26), // Boxing Day
             };
             return holidays.Contains(date.Date);
         }
@@ -1375,6 +1386,30 @@ namespace EbbsSoft
             {
                 yield return value.Substring(i, Math.Min(numberOfParts, value.Length -i));
             }
+        }
+    
+        /// <summary>
+        /// Unix TimeStamp To DateTime
+        /// </summary>
+        /// <param name="unixTimestamp"></param>
+        /// <returns></returns>
+        public static DateTime UnixToDateTime(this double unixTimestamp)
+        {
+             DateTime unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            long unixTimeStampInTicks = (long) (unixTimestamp * TimeSpan.TicksPerSecond);
+            return new DateTime(unixStart.Ticks + unixTimeStampInTicks, System.DateTimeKind.Utc);
+        }
+
+        /// <summary>
+        /// DateTime To Unix TimeStamp
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static Double DateTimeToUnix(this DateTime dateTime)
+        {
+            DateTime unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            long unixTimeStampInTicks = (dateTime.ToUniversalTime() - unixStart).Ticks;
+            return (double) unixTimeStampInTicks / TimeSpan.TicksPerSecond;
         }
     }
 }
