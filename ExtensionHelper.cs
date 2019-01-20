@@ -177,9 +177,9 @@ namespace EbbsSoft
             for (int i = 0; i < list.Count; i++)
             {
                 TypeCode typeCode = (TypeCode)list[i];
-                foreach (int unusableType in UNCONVERTABLE_OBJECT_TYPES)
+                foreach (int unuseableType in UNCONVERTABLE_OBJECT_TYPES)
                 {
-                    if (Type.GetTypeCode(bytes.GetType()) == (TypeCode)unusableType)
+                    if (Type.GetTypeCode(bytes.GetType()) == (TypeCode)unuseableType)
                     {
                         return string.Format("{0} is not a supported type", bytes.GetType());
                     }
@@ -1395,9 +1395,9 @@ namespace EbbsSoft
         /// <returns></returns>
         public static DateTime UnixToDateTime(this double unixTimestamp)
         {
-             DateTime unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            DateTime unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Local);
             long unixTimeStampInTicks = (long) (unixTimestamp * TimeSpan.TicksPerSecond);
-            return new DateTime(unixStart.Ticks + unixTimeStampInTicks, System.DateTimeKind.Utc);
+            return new DateTime(unixStart.Ticks + unixTimeStampInTicks, System.DateTimeKind.Local);
         }
 
         /// <summary>
@@ -1410,6 +1410,16 @@ namespace EbbsSoft
             DateTime unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
             long unixTimeStampInTicks = (dateTime.ToUniversalTime() - unixStart).Ticks;
             return (double) unixTimeStampInTicks / TimeSpan.TicksPerSecond;
+        }
+    
+        /// <summary>
+        /// Convert To Json
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static string ToJson(this string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject(data).ToString() ?? null;
         }
     }
 }

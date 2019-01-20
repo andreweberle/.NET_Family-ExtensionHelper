@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "84fdd1f1ea3da95793a8f450e204a8043ea22f00"
+    "signature": "2d7fdce594fde05900bc746739dc7dc0e581ad42"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,6 +11,7 @@
         "dependencies": {
           "Microsoft.Win32.Registry": "4.5.0",
           "NETStandard.Library": "2.0.3",
+          "Newtonsoft.Json": "12.0.1",
           "System.Data.SqlClient": "4.6.0",
           "ZetaLongPaths": "1.0.0.27",
           "ZetaLongPaths.NetStandard": "1.0.0.27",
@@ -66,6 +67,14 @@
       "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "Newtonsoft.Json/12.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.22727"
+          }
         }
       },
       "Portable.BouncyCastle/1.8.4": {
@@ -868,6 +877,13 @@
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
+    "Newtonsoft.Json/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jmVyoEyk0In8r+AObYQyFKVFm7uSRzE0XSHSbEtBJcZDMV6DqJoyB4FLcHwprPVhAh826so0db3DIKXVnpGoPA==",
+      "path": "newtonsoft.json/12.0.1",
+      "hashPath": "newtonsoft.json.12.0.1.nupkg.sha512"
+    },
     "Portable.BouncyCastle/1.8.4": {
       "type": "package",
       "serviceable": true,
@@ -1207,7 +1223,7 @@
     "System.Runtime.CompilerServices.Unsafe/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6zBxkHYemB0kQiHP3vGXGRXejZVoNVuMn2paUuqKKi5Wyjkxfkp+D0rd0c3VrGwotidRINt6KpOi2smL4VkJKw==",
+      "sha512": "sha512-YrzNWduCDHhUaSRBxHxL11UkM2fD6y8hITHis4/LbQZ6vj3vdRjoH3IoPWWC9uDXK2wHIqn+b5gv1Np/VKyM1g==",
       "path": "system.runtime.compilerservices.unsafe/4.5.0",
       "hashPath": "system.runtime.compilerservices.unsafe.4.5.0.nupkg.sha512"
     },
