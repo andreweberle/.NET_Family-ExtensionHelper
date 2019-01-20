@@ -1421,5 +1421,20 @@ namespace EbbsSoft
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject(data).ToString() ?? null;
         }
+
+        /// <summary>
+        /// String to Stream.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static Stream ToStream(this string data)
+        {
+            MemoryStream ms = new MemoryStream();
+            StreamWriter sw = new StreamWriter(ms);
+            sw.Write(data);
+            sw.Flush();
+            ms.Position = 0;
+            return ms;
+        }
     }
 }
