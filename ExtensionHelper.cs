@@ -1436,5 +1436,21 @@ namespace EbbsSoft
             ms.Position = 0;
             return ms;
         }
+
+        /// <summary>
+        /// Wait For A File.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static bool WaitForFile(this string filePath)
+        {
+            while (!EbbsSoft.ExtensionHelper.IsFileLocked(filePath))
+            {
+                return false;
+            }
+
+            // Shouldn't get to this.
+            return true;
+        }
     }
 }
