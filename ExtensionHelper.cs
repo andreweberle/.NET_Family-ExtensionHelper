@@ -1444,13 +1444,13 @@ namespace EbbsSoft
         /// <returns></returns>
         public static bool WaitForFile(this string filePath)
         {
-            while (!EbbsSoft.ExtensionHelper.IsFileLocked(filePath))
+            do
             {
-                return false;
+                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5000));
             }
-
-            // Shouldn't get to this.
-            return true;
+            while (EbbsSoft.ExtensionHelper.IsFileLocked(filePath));
+            
+            return false;
         }
     }
 }
