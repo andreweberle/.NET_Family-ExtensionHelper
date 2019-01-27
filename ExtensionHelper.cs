@@ -118,7 +118,7 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="sourceDirectory"></param>
         /// <param name="destinationDirectory"></param>
-        public static void MoveFilesTo(this string sourceDirectory, string destinationDirectory)
+        public static void TryMoveFilesTo(this string sourceDirectory, string destinationDirectory)
         {
             if (IsValidDirectoryPath(sourceDirectory) && (IsValidDirectoryPath(destinationDirectory)))
             {
@@ -132,14 +132,14 @@ namespace EbbsSoft
         /// Create a new directory
         /// </summary>
         /// <param name="path">path to new directory</param>
-        public static void CreateDirectory(this string path) => Directory.CreateDirectory(path);
+        public static void TryCreateDirectory(this string path) => Directory.CreateDirectory(path);
 
         /// <summary>
         /// Copy directory to a new destination
         /// </summary>
         /// <param name="sourceDirectory">Source Directory</param>
         /// <param name="targetDirectory">Targe Directory</param>
-        public static void CopyDirectory(this string sourceDirectory, string targetDirectory)
+        public static void TryCopyDirectory(this string sourceDirectory, string targetDirectory)
         {
             if (sourceDirectory.IsValidDirectoryPath())
             {
@@ -248,7 +248,7 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="filePath">file path</param>
         /// <returns></returns>
-        public static string GetFileCheckSum(this string filePath)
+        public static string TryGetFileCheckSum(this string filePath)
         {
             if (filePath.IsValidFilePath())
             {
@@ -272,11 +272,11 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="textFilePath">Destination Of File</param>
         /// <param name="givenParameters"></param>
-        public static bool WriteToTextFile(this string textFilePath, string data, bool AppendText)
+        public static bool TryWriteToTextFile(this string textFilePath, string data, bool AppendText)
         {
             if (!textFilePath.IsValidFilePath())
             {
-                textFilePath.CreateTextFile();
+                textFilePath.TryCreateTextFile();
             }
             
             try
@@ -299,7 +299,7 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="textFilepath">Destination Location</param>
         /// <returns></returns>
-        public static bool CreateTextFile(this string textFilepath)
+        public static bool TryCreateTextFile(this string textFilepath)
         {
             try
             {
@@ -504,7 +504,7 @@ namespace EbbsSoft
         /// <param name="elementTagName"></param>
         /// <param name="attribute"></param>
         /// <returns></returns>
-        public static string ReadValueFromXmlDoc(this XmlDocument xmlDocument, string elementTagName, string attribute)
+        public static string TryReadValueFromXmlDoc(this XmlDocument xmlDocument, string elementTagName, string attribute)
         {
             return xmlDocument.GetElementsByTagName(elementTagName).Cast<XmlNode>()
                                                                    .Select(x => x.Attributes[attribute].Value).First();  
@@ -517,7 +517,7 @@ namespace EbbsSoft
         /// <param name="xmlDocument"></param>
         /// <param name="xPath"></param>
         /// <returns></returns>
-        public static string ReadValueFromXmlDoc(this XmlDocument xmlDocument, string xPath)
+        public static string TryReadValueFromXmlDoc(this XmlDocument xmlDocument, string xPath)
         {
             return xmlDocument.SelectSingleNode(xPath).InnerXml;
         }
@@ -1181,7 +1181,7 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="pdf_File"></param>
         /// <returns></returns>
-        public static string ExtractTextFromPDF(this string pdf_File)
+        public static string TryExtractTextFromPDF(this string pdf_File)
         {
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
             {
@@ -1380,7 +1380,7 @@ namespace EbbsSoft
         /// <param name="value"></param>
         /// <param name="numberOfParts"></param>
         /// <returns></returns>
-        public static IEnumerable<string> SplitInPartsOf(this string value, int numberOfParts)
+        public static IEnumerable<string> TrySplitInPartsOf(this string value, int numberOfParts)
         {
             for (int i = 0; i < value.Length; i += numberOfParts)
             {
