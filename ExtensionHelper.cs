@@ -911,61 +911,50 @@ namespace EbbsSoft
         /// </Summary>
         public static string WatchPath(this string path, string filter = "*.*")
         {
-            bool breakOut = false;
-
-            do
+            // Create a file watcher object.
+            var fileWatcher = new FileSystemWatcher(path)
             {
-                // Create a new thread to help
-                // the application from becoming unresponsive.
-                Task task = Task.Run(() =>
-                {
-                    // Create a file watcher object.
-                    var fileWatcher = new FileSystemWatcher(path)
-                    {
-                        Filter = filter,
-                        EnableRaisingEvents = true
-                    };
-                    string msg = null;
+                Filter = filter,
+                EnableRaisingEvents = true
+            };
 
-                    fileWatcher.Created += (sender,e) =>
-                    {
-                        msg = string.Format("{0} has been created at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
-                        Console.WriteLine(msg);
-                    };
+            string msg = null;
 
-                    fileWatcher.Deleted += (sender, e) =>
-                    {
-                        msg = string.Format("{0} has been deleted at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
-                        Console.WriteLine(msg);
-                    };
+            fileWatcher.Created += (sender,e) =>
+            {
+                msg = string.Format("{0} has been created at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
+                Console.WriteLine(msg);
+            };
 
-                    fileWatcher.Changed += (sender, e) =>
-                    {
-                        msg = string.Format("{0} has been changed at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
-                        Console.WriteLine(msg);
-                    };
+            fileWatcher.Deleted += (sender, e) =>
+            {
+                msg = string.Format("{0} has been deleted at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
+                Console.WriteLine(msg);
+            };
 
-                    fileWatcher.Renamed += (sender, e) =>
-                    {
-                        msg = string.Format("{0} has been renamed at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
-                        Console.WriteLine(msg);
-                    };
+            fileWatcher.Changed += (sender, e) =>
+            {
+                msg = string.Format("{0} has been changed at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
+                Console.WriteLine(msg);
+            };
 
-                    fileWatcher.Error += (sender, e) =>
-                    {
-                        msg = string.Format("Error : {0}", e.GetException());
-                        Console.WriteLine(msg);
-                    };
+            fileWatcher.Renamed += (sender, e) =>
+            {
+                msg = string.Format("{0} has been renamed at {1}", e.Name, Path.GetDirectoryName(e.FullPath));
+                Console.WriteLine(msg);
+            };
 
-                    fileWatcher.Disposed += (sender, e) =>
-                    {
-                        msg = string.Format("No Longer Watching : {0}", path);
-                        Console.WriteLine(msg);
-                    };
-                });
-            }
-            while (!breakOut);
-            return null; // exit with null;
+            fileWatcher.Error += (sender, e) =>
+            {
+                msg = string.Format("Error : {0}", e.GetException());
+                Console.WriteLine(msg);
+            };
+
+            fileWatcher.Disposed += (sender, e) =>
+            {
+                msg = string.Format("No Longer Watching : {0}", path);
+                Console.WriteLine(msg);
+            };       
         }
 
         /// <Summary>
@@ -979,7 +968,7 @@ namespace EbbsSoft
             {
                 try
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(filePath, System.IO.FileMode.Open, FileAccess.Read))
+                    using (var fs = new System.IO.FileStream(filePath, System.IO.FileMode.Open, FileAccess.Read))
                     {
                         return false;
                     }
@@ -1177,7 +1166,7 @@ namespace EbbsSoft
         }
 
         /// <summary>
-        /// TEST
+        /// Extract Text From A Pdf.
         /// </summary>
         /// <param name="pdf_File"></param>
         /// <returns></returns>
@@ -1185,7 +1174,7 @@ namespace EbbsSoft
         {
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
             {
-                iTextSharp.text.pdf.PdfReader pdfReader = new iTextSharp.text.pdf.PdfReader(pdf_File);
+                var pdfReader = new iTextSharp.text.pdf.PdfReader(pdf_File);
                 StringBuilder text = new StringBuilder();
                 var t = pdfReader.GetPageContent(pdfReader.NumberOfPages);
                 return System.Text.Encoding.UTF8.GetString(t);
@@ -1451,6 +1440,37 @@ namespace EbbsSoft
             while (EbbsSoft.ExtensionHelper.IsFileLocked(filePath));
             
             return false;
+        }
+
+        /// <summary>
+        /// Get File Extension Type.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static string GetExtension(this string filePath)
+        {
+            if (filePath.IsValidFilePath())
+            {
+                return System.IO.Path.GetExtension(filePath);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Generate a true random.
+        /// </summary>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        public static int GetTrueRandom(this int max)
+        {
+            object syncLock = new object();
+            Random random = new Random();
+
+            lock (syncLock)
+            {
+                return random.Next(0, max);
+            }
+
         }
     }
 }
