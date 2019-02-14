@@ -908,8 +908,9 @@ namespace EbbsSoft
 
         /// <Summary>
         /// System File Watcher
-        /// </Summary>
-        public static string WatchPath(this string path, string filter = "*.*")
+        /// Test Required.
+        /// </Summary>      
+        public static object WatchPath(this string path, string filter = "*.*")
         {
             // Create a file watcher object.
             var fileWatcher = new FileSystemWatcher(path)
@@ -954,7 +955,9 @@ namespace EbbsSoft
             {
                 msg = string.Format("No Longer Watching : {0}", path);
                 Console.WriteLine(msg);
-            };       
+            };
+
+            return null;      
         }
 
         /// <Summary>
@@ -1081,9 +1084,9 @@ namespace EbbsSoft
         public static string ExtractHyperLinkFromData(this string data)
         {
             return XElement.Parse(data)
-                            .Descendants("a")
-                            .Select(x => x.Attribute("href").Value)
-                            .FirstOrDefault();
+                           .Descendants("a")
+                           .Select(x => x.Attribute("href").Value)
+                           .FirstOrDefault();
         }
 
         /// <summary>
@@ -1204,11 +1207,15 @@ namespace EbbsSoft
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
                     xmlSerializer.Serialize(sw, obj);
-                    return sw.ToString().Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE cXML SYSTEM \"http://xml.cXML.org/schemas/cXML/1.2.021/cXML.dtd\">");
+
+                    return sw.ToString()
+                             .Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", 
+                                      "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE cXML SYSTEM \"http://xml.cXML.org/schemas/cXML/1.2.021/cXML.dtd\">");
                 }
             }
             catch (Exception ex)
             {
+                // Object Couldn't Be Serialized.
                 throw new Exception(ex.Message);
             }
         }
@@ -1219,10 +1226,7 @@ namespace EbbsSoft
         /// <param name="list"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static bool IsEmpty<T>(this List<T> list)
-        {
-            return list.Count > 0 ? false : true;
-        }
+        public static bool IsEmpty<T>(this List<T> list) => list.Count > 0 ? false : true;
 
         /// <summary>
         /// return a string to a memory stream.
@@ -1236,17 +1240,20 @@ namespace EbbsSoft
             {
                 case EncodingFormat.UTF7:
                     return new MemoryStream(Encoding.UTF7.GetBytes(value ?? ""));
+
                 case EncodingFormat.UTF8:
                     return new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
+
                 case EncodingFormat.UT32:
                     return new MemoryStream(Encoding.UTF32.GetBytes(value ?? ""));
+
                 case EncodingFormat.UNICODE:
                     return new MemoryStream(Encoding.Unicode.GetBytes(value ?? ""));
+
                 case EncodingFormat.ASCII:
                     return new MemoryStream(Encoding.ASCII.GetBytes(value ?? ""));
-                    default:
-                    return null;
             }
+            return null;
         }
 
         /// <summary>
@@ -1254,40 +1261,28 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToCurrency(this string value)
-        {
-            return string.Format("{0:C}",value);
-        }
+        public static string ToCurrency(this string value) => string.Format("{0:C}",value);
 
         /// <summary>
         /// Convert an int to a currency Format
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToCurrency(this int value)
-        {
-            return string.Format("{0:C}",value);
-        }
+        public static string ToCurrency(this int value) => string.Format("{0:C}",value);
 
         /// <summary>
         /// Convert a double to a currency Format
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToCurrency(this double value)
-        {
-            return string.Format("{0:C}",value);
-        }
+        public static string ToCurrency(this double value) => string.Format("{0:C}",value);
 
         /// <summary>
         /// Convert a decimal to a currency Format
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToCurrency(this decimal value)
-        {
-            return string.Format("{0:C}",value);
-        }
+        public static string ToCurrency(this decimal value) => string.Format("{0:C}",value);
 
         /// <summary>
         /// Reset a Tables Seed.
@@ -1298,19 +1293,21 @@ namespace EbbsSoft
         /// <returns></returns>
         public static async Task<bool> ResetTableSeed(this SqlConnection sqlConn, string tableName, int seed)
         {
-            string RESET_SEED = $"DBCC CHECKIDENT ('[{tableName}]', RESEED, @value)";
-            SqlCommand sqlCommand = new SqlCommand(RESET_SEED, sqlConn);
-            sqlCommand.Parameters.AddWithValue("@value",seed.ToString());
             using (SqlConnection sqlConnection = new SqlConnection(sqlConn.ConnectionString))
-            {
-                try
+            {   
+                string RESET_SEED = $"DBCC CHECKIDENT ('[{tableName}]', RESEED, @value)";
+                using (SqlCommand sqlCommand = new SqlCommand(RESET_SEED, sqlConn))
                 {
-                    await sqlConnection.OpenAsync();
-                    return sqlCommand.ExecuteNonQuery() > 1 ? true : false;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
+                    sqlCommand.Parameters.AddWithValue("@value",seed.ToString());                
+                    try
+                    {
+                        await sqlConnection.OpenAsync();
+                        return sqlCommand.ExecuteNonQuery() > 1 ? true : false;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
                 }
             }
         }
@@ -1327,8 +1324,12 @@ namespace EbbsSoft
             DateTime newDate = date;
             while (addDays != 0)
             {
-                newDate = newDate.AddDays(temp);
-                if (newDate.DayOfWeek != DayOfWeek.Saturday && newDate.DayOfWeek != DayOfWeek.Sunday && !newDate.IsHoliday())
+                newDate = newDate.AddDays(temp)
+                ;
+                if (newDate.DayOfWeek != DayOfWeek.Saturday 
+                                      && newDate.DayOfWeek 
+                                      != DayOfWeek.Sunday 
+                                      && !newDate.IsHoliday())
                 {
                     addDays -= temp;
                 }
@@ -1408,7 +1409,31 @@ namespace EbbsSoft
         /// <returns></returns>
         public static string ToJson(this string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject(data).ToString() ?? null;
+            try
+            {
+                return Newtonsoft.Json.JsonConvert.DeserializeObject(data).ToString() ?? null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        /// <summary>
+        /// Convert an Object To Json.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string ToJson(this object obj)
+        {
+            try
+            {
+                return Newtonsoft.Json.JsonConvert.SerializeObject(obj).ToString() ?? null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         /// <summary>
@@ -1463,11 +1488,17 @@ namespace EbbsSoft
         /// <returns></returns>
         public static int GetTrueRandom(this int max)
         {
+            // Sync Lock Object.
             object syncLock = new object();
-            Random random = new Random();
 
+            // Get Random Number Object With Guid Seed As Seed.
+            Random random = new Random(Guid.NewGuid().GetHashCode());
+
+            // Lock the Sync Lock Object
+            // So Hopefully No Duplicates Happen.
             lock (syncLock)
             {
+                // Return Results To The Caller.
                 return random.Next(0, max);
             }
 
