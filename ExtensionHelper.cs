@@ -1501,7 +1501,58 @@ namespace EbbsSoft
                 // Return Results To The Caller.
                 return random.Next(0, max);
             }
-
         }
+
+        /// <summary>
+        /// Reverse a String.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string Reverse(this string str)
+        {
+            char[] chars = str.ToCharArray();
+            Array.Reverse(chars);
+            return new string(chars);
+        }
+
+        /// <summary>
+        /// Reverse a Number Set.
+        /// </summary>
+        /// <param name="numbers"></param>
+        /// <returns></returns>
+        public static int Reverse(this int[] numbers)
+        {
+            StringBuilder sb = new StringBuilder();
+            Array.ForEach(numbers, x => sb.Append(x));
+            return Convert.ToInt32(Reverse(sb.ToString()));
+        }
+
+        /// <summary>
+        /// Convert From Celsius To Fahrenheit
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static double ToFahrenheit(this double c) => ((9.0 / 5.0) * c) + 32;
+
+        /// <summary>
+        /// Convert From Celsius To Fahrenheit
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static double ToFahrenheit(this int c) => ((9.0 / 5.0) * Convert.ToDouble(c)) + 32;
+
+        /// <summary>
+        /// Convert From Fahrenheit To Celsius
+        /// </summary>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public static double ToCelsius(this double f) => (5.0 / 9.0) * (f - 32);
+
+        /// <summary>
+        /// Convert From Fahrenheit To Celsius
+        /// </summary>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public static double ToCelsius(this int f) => (5.0 / 9.0) * (Convert.ToDouble(f) - 32);
     }
 }
