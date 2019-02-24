@@ -1261,21 +1261,21 @@ namespace EbbsSoft
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToCurrency(this string value) => string.Format("{0:C}",value);
+        public static string ToCurrency(this string value) => ToCurrency(Convert.ToDecimal(value));
 
         /// <summary>
         /// Convert an int to a currency Format
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToCurrency(this int value) => string.Format("{0:C}",value);
+        public static string ToCurrency(this int value) => ToCurrency(Convert.ToDecimal(value));
 
         /// <summary>
         /// Convert a double to a currency Format
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToCurrency(this double value) => string.Format("{0:C}",value);
+        public static string ToCurrency(this double value) => ToCurrency(Convert.ToDecimal(value));
 
         /// <summary>
         /// Convert a decimal to a currency Format
@@ -1291,25 +1291,50 @@ namespace EbbsSoft
         /// <param name="tableName">TableName</param>
         /// <param name="seed">Seed Starting Point</param>
         /// <returns></returns>
-        public static async Task<bool> ResetTableSeed(this SqlConnection sqlConn, string tableName, int seed)
+        public static bool ResetTableSeed(this SqlConnection sqlConn, string tableName, int seedIndex)
         {
+            string RESET_SEED = $"DBCC CHECKIDENT ('[{tableName}]', RESEED, @value)";
             using (SqlConnection sqlConnection = new SqlConnection(sqlConn.ConnectionString))
             {   
-                string RESET_SEED = $"DBCC CHECKIDENT ('[{tableName}]', RESEED, @value)";
                 using (SqlCommand sqlCommand = new SqlCommand(RESET_SEED, sqlConn))
                 {
-                    sqlCommand.Parameters.AddWithValue("@value",seed.ToString());                
-                    try
+                    sqlCommand.Parameters.AddWithValue("@value",seedIndex.ToString());
+                    
+                    if (sqlConnection.ConnectedToServerAsync())
                     {
-                        await sqlConnection.OpenAsync();
                         return sqlCommand.ExecuteNonQuery() > 1 ? true : false;
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        throw new Exception(ex.Message);
+                        return false;
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Check Connection To SQL Server Async
+        /// </summary>
+        /// <param name="sqlConnection"></param>
+        /// <returns></returns>
+        public static bool ConnectedToServerAsync(this SqlConnection sqlConnection)
+        {
+            bool isConnected = false;
+            Task task = Task.Run(async() =>
+            {
+                try
+                {
+                    await sqlConnection.OpenAsync();
+                    isConnected = true;
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            });
+
+            Task.WaitAll(task);
+            return isConnected;
         }
 
         /// <summary>

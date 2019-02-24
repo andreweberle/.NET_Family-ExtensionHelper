@@ -1317,6 +1317,7 @@
       "type": "package",
       "path": "microsoft.win32.primitives/4.0.1",
       "files": [
+        ".nupkg.metadata",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
