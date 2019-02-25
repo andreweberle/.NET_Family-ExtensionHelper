@@ -81,6 +81,8 @@ starting requesting the extenstion helper class.<br>So from there I created this
    - Reverse
    - ToFahrenheit
    - ToCelsius
+   - GetCoordinates
+   - GetDateTimeFromInternet
    
 ## To-Do
 - Create REAL Documentation
