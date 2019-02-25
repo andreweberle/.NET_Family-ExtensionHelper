@@ -5,11 +5,17 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>\\FS1\UserData2$\andrew.eberle\My Documents\GitHub\.NET_Family-ExtensionHelper\EbbsSoft.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.4.5" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="ZetaLongPaths" Version="1.0.0.27" />
     <PackageReference Include="ZetaLongPaths.NetStandard" Version="1.0.0.27" />
   </ItemGroup>

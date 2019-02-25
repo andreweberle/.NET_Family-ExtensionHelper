@@ -4,19 +4,18 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using ZetaLongPaths;
-using iTextSharp.text.pdf;
 using System.Xml.Serialization;
 using System.Data.SqlClient;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 namespace EbbsSoft
 {
@@ -1579,5 +1578,59 @@ namespace EbbsSoft
         /// <param name="f"></param>
         /// <returns></returns>
         public static double ToCelsius(this int f) => (5.0 / 9.0) * (Convert.ToDouble(f) - 32);
+
+        /// <summary>
+        /// Get DateTimeFromInternet
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="username">username required, Sign up for an account http://api.geonames.org</param>
+        /// <returns></returns>
+        public static DateTime GetDateTimeFromInternet(this DateTime dt, string username)
+        {
+            // Raw Data Place Holder.
+            dynamic rawData = null;
+
+            // Tuple For Corrdinates.
+            (decimal lat, decimal lng) = GetCoordinates();
+
+            Task task = Task.Run(async() =>
+            {
+                string url = $"http://api.geonames.org/timezoneJSON?lat={lat}&lng={lng}&username={username}";
+                using (HttpClient httpClient = new HttpClient())
+                using (HttpResponseMessage httpResponseMessage= await httpClient.GetAsync(url))
+                using (HttpContent httpContent = httpResponseMessage.Content)
+                {
+                    // Attempt To Read Data.
+                    rawData = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(await httpContent.ReadAsStringAsync());
+                }
+            });
+            Task.WaitAny(task);
+
+            // If Raw Data Is Null, Return MinValue For DateTime.
+            return rawData == null ? DateTime.MinValue : (DateTime)Convert.ToDateTime(Convert.ToString(rawData["time"]));
+        }
+
+        /// <summary>
+        /// Get Current Coordinates
+        /// </summary>
+        /// <returns></returns>
+        public static (decimal lat, decimal lng) GetCoordinates()
+        {
+            dynamic rawData = null;
+
+            Task task = Task.Run(async() =>
+            {
+                string url = "http://ip-api.com/json/";
+                using (HttpClient httpClient= new HttpClient())
+                using (HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url))
+                using (HttpContent httpContent = httpResponseMessage.Content)
+                {
+                    rawData = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(await httpContent.ReadAsStringAsync());
+                }
+            });
+
+            Task.WaitAll(task);
+            return (Convert.ToDecimal(rawData["lat"]), Convert.ToDecimal(rawData["lon"]));
+        }
     }
 }

@@ -1,0 +1,641 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EbbsSoft</name>
+    </assembly>
+    <members>
+        <member name="T:EbbsSoft.ExtensionHelper">
+            <summary>
+            An Extension Helper For The .Net Family.
+            </summary>
+        </member>
+        <member name="T:EbbsSoft.ExtensionHelper.OutputStyle">
+            <summary>
+            Output Style Required For For PrintColouredText
+            </summary>
+        </member>
+        <member name="T:EbbsSoft.ExtensionHelper.EncodingFormat">
+            <summary>
+            Encoding Types
+            </summary>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.EnumDescriptionToString(System.Enum)">
+            <summary>
+            Get the Enum Value to String
+            </summary>
+            <param name="enum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsValidDirectoryPath(System.String)">
+            <summary>
+            Returns if the given path is vaild or not.
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.HasDuplicateItem``1(``0[])">
+            <summary>
+            Check if an object array has a duplicate object,
+            </summary>
+            <param name="arrayList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsValidFilePath(System.String)">
+            <summary>
+            Returns if the given file path exists.
+            </summary>
+            <param name="fullFilePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.TryMoveFilesTo(System.String,System.String)">
+            <summary>
+            Moves files from one directory to another.
+            </summary>
+            <param name="sourceDirectory"></param>
+            <param name="destinationDirectory"></param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.TryCreateDirectory(System.String)">
+            <summary>
+            Create a new directory
+            </summary>
+            <param name="path">path to new directory</param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.TryCopyDirectory(System.String,System.String)">
+            <summary>
+            Copy directory to a new destination
+            </summary>
+            <param name="sourceDirectory">Source Directory</param>
+            <param name="targetDirectory">Targe Directory</param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.BytesToHumanReadableSize(System.Object)">
+            <summary>
+            Converts an Object type (if valid) into a 
+            readable size value
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.GetMimeType(System.String)">
+            <summary>
+            Get the file mime type.
+            </summary>
+            <param name="filePathLocation">file path location</param>
+            <returns></returns>
+        </member>
+        <member name="P:EbbsSoft.ExtensionHelper.IsWindows">
+            <Summary>
+            Check If The Operating System Is Windows
+            </Summary>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.TryGetFileCheckSum(System.String)">
+            <summary>
+            Calculate MD5
+            </summary>
+            <param name="filePath">file path</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.TryWriteToTextFile(System.String,System.String,System.Boolean)">
+            <summary>
+            Write text to a text file
+            </summary>
+            <param name="textFilePath">Destination Of File</param>
+            <param name="givenParameters"></param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.TryCreateTextFile(System.String)">
+            <summary>
+            Create an Empty Text File
+            </summary>
+            <param name="textFilepath">Destination Location</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.CompareFileVersionTo(System.String,System.String)">
+            <summary>
+            Compare File Versions
+            </summary>
+            <param name="filePath0"></param>
+            <param name="filePath1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsValidEmailAddress(System.String)">
+            <summary>
+            https://stackoverflow.com/questions/1365407/c-sharp-code-to-validate-email-address
+            Validate an email address.
+            </summary>
+            <param name="emailAddress"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ReplaceMultiple(System.String,System.Char[],System.Char)">
+            <summary>
+            Replace Multiple Chars All At Once.
+            </summary>
+            <param name="string"></param>
+            <param name="charsToRemove"></param>
+            <param name="replacementChar"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.GetBytesCount(System.String,EbbsSoft.ExtensionHelper.EncodingFormat)">
+            <summary>
+            Return the number of bytes
+            for a string object.
+            </summary>
+            <param name="string"></param>
+            <param name="encodingFormat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsValidLength(System.String,System.Int32)">
+            <summary>
+            Return true or false
+            if a string object meets the
+            minimum length requirement.
+            </summary>
+            <param name="string"></param>
+            <param name="minimumLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToEnum``1(System.String)">
+            <summary>
+            Convert A String To An Enum
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.WordCount(System.String)">
+            <summary>
+            Counts the number of words in a string.
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.RecuriveChar(System.String)">
+            <summary>
+            Returns the first Recurive Char of a string.
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToXmlDocument(System.Xml.Linq.XDocument)">
+            <summary>
+            Convert an XML Document to an XDocument
+            </summary>
+            <param name="xDocument"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToXDocument(System.Xml.XmlDocument)">
+            <summary>
+            Convert an XDocument to an XML Document
+            </summary>
+            <param name="xmlDocument"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.TryReadValueFromXmlDoc(System.Xml.XmlDocument,System.String,System.String)">
+            <summary>
+            Returns a particular value from an Xml Document
+            object type.
+            </summary>
+            <param name="xmlDocument"></param>
+            <param name="elementTagName"></param>
+            <param name="attribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.TryReadValueFromXmlDoc(System.Xml.XmlDocument,System.String)">
+            <summary>
+            Returns a particular value from an xml document
+            using an xpath eg "//Person/FirstName"
+            </summary>
+            <param name="xmlDocument"></param>
+            <param name="xPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToWords(System.Int32)">
+            <summary>
+            Convert A Number To
+            Readable English
+            https://stackoverflow.com/questions/554314/how-can-i-convert-an-integer-into-its-verbal-representation
+            </summary>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.AssemblyVersion(System.String)">
+            <summary>
+            Get the Assembly File Version.
+            </summary>
+            <param name="assemblyPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.PrintColouredText(System.ConsoleColor,System.ConsoleColor,System.String,EbbsSoft.ExtensionHelper.OutputStyle)">
+            <Summary>
+            Write Coloured Text To The Console.
+            </Summary>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.PrintColouredText(System.String,System.ConsoleColor,EbbsSoft.ExtensionHelper.OutputStyle)">
+            <Summary>
+            Write Coloured Text To The Console.
+            </Summary>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.BubbleSort(System.Int32[])">
+            <summary>
+            Bubble Sort
+            </summary>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.Swap(System.String@,System.String@)">
+            <summary>
+            Preform a swap between two strings
+            objects.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.Swap(System.Int32@,System.Int32@)">
+            <summary>
+            Preform a swap between two integers
+            objects.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.Swap(System.Object@,System.Object@)">
+            <summary>
+            Preform a swap between two objects
+            objects.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper._CopyDirectory(System.String,System.String)">
+            <summary>
+            C# Has no built in Folder Copy Function like VB.NET
+            https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.aspx
+            Call Method using eg CopyDirectory(sourceDir,destinationDir);
+            </summary>
+            <param name="sourceDirectory">Source Directory Path</param>
+            <param name="targetDirectory">Destination Directory Path</param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToTitleCase(System.String)">
+            <summary>
+            Returns A String To Title Case
+            Eg hello world --> Hello World
+            </summary>
+            <param name="str">Value</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToCamelCase(System.String)">
+            <Summary>
+            Return the given string with camel casing.
+            </Summary>
+            <param name="str">Value</param>
+            <returns>string [CamelCase]</returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.AgeFromDateTime(System.DateTime)">
+            <summary>
+            Get the age from DateTime
+            </summary>
+            <param name="dateTime">Birthday</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsValidPhoneNumber(System.String)">
+            <summary>
+            Validate An Australian Phone Number
+            eg 0354xxxxxx | 0412xxxxxx
+            </summary>
+            <param name="phoneNumber">Australian Phone Number</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.Owner(System.IO.FileInfo)">
+            <Summary>
+            Returns the file's creator
+            </Summary>
+            <param name="fileInfo">FileInfo Object</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.Owner(ZetaLongPaths.ZlpFileInfo)">
+            <Summary>
+            Returns the file's creator
+            </Summary>
+            <param name="zetaFileInfo">ZetaFileInfo Object</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.WatchPath(System.String,System.String)">
+            <Summary>
+            System File Watcher
+            Test Required.
+            </Summary>      
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsFileLocked(System.String)">
+            <Summary>
+            Check If The Given File Path
+            Is Locked/Not Useable
+            </Summary>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsEmpty(System.String)">
+            <summary>
+            Check For Empty String
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsDigitsOnly(System.String)">
+            <summary>
+            Check String For Only Digits
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ValidateLuhn(System.String)">
+            <summary>
+            Validate Luhun (Mod10)
+            </summary>
+            <param name="sum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ValidateLuhn(System.Int32)">
+            <summary>
+            Validate Luhn (Mod10)
+            </summary>
+            <param name="sum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.StreamToByteArray(System.IO.Stream)">
+            <summary>
+            Convert Stream To Byte Array
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsOdd(System.Int32)">
+            <summary>
+            Check If Given Number Is An Odd Number
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ExtractHyperLinkFromData(System.String)">
+            <summary>
+            Extract A Hyper Link From an ahref property.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsReadOnly(System.IO.FileInfo)">
+            <summary>
+            Is File Read Only?
+            </summary>
+            <param name="fileInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsReadOnly(System.String)">
+            <summary>
+            Is File Read Only
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.AddReadOnlyAttribute(System.IO.FileInfo)">
+            <summary>
+            Change File To Read Only
+            </summary>
+            <param name="fileInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.AddReadOnlyAttribute(System.String)">
+            <summary>
+            Change File To Read Only
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.RemoveReadOnlyAttribute(System.IO.FileInfo)">
+            <summary>
+            Remove Read Only Property
+            </summary>
+            <param name="fileInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.RemoveReadOnlyAttribute(System.String)">
+            <summary>
+            Remove Read Only Property
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.RemoveIllegalCharsFromPath(System.String)">
+            <summary>
+            Remove Illegal Chars From Path
+            [ File Name May Not Be Included ]
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.TryExtractTextFromPDF(System.String)">
+            <summary>
+            Extract Text From A Pdf.
+            </summary>
+            <param name="pdf_File"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToMemoryStream(System.Byte[])">
+            <summary>
+            Byte Array To Memory Stream
+            </summary>
+            <param name="byteArray"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToCXML(System.Object)">
+            <summary>
+            Convert an Object To XML
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.IsEmpty``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Check if a T type list is empty.
+            </summary>
+            <param name="list"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToMemoryStream(System.String,EbbsSoft.ExtensionHelper.EncodingFormat)">
+            <summary>
+            return a string to a memory stream.
+            </summary>
+            <param name="value"></param>
+            <param name="encodingType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToCurrency(System.String)">
+            <summary>
+            Convert a string to a currency Format
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToCurrency(System.Int32)">
+            <summary>
+            Convert an int to a currency Format
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToCurrency(System.Double)">
+            <summary>
+            Convert a double to a currency Format
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToCurrency(System.Decimal)">
+            <summary>
+            Convert a decimal to a currency Format
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ResetTableSeed(System.Data.SqlClient.SqlConnection,System.String,System.Int32)">
+            <summary>
+            Reset a Tables Seed.
+            </summary>
+            <param name="sqlConn">Connection To SQL Database</param>
+            <param name="tableName">TableName</param>
+            <param name="seed">Seed Starting Point</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ConnectedToServerAsync(System.Data.SqlClient.SqlConnection)">
+            <summary>
+            Check Connection To SQL Server Async
+            </summary>
+            <param name="sqlConnection"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:EbbsSoft.ExtensionHelper.AddWorkingDays(System.DateTime,System.Int32)" -->
+        <member name="M:EbbsSoft.ExtensionHelper.IsHoliday(System.DateTime)">
+            <summary>
+            Check If Its a Public Holiday
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.TrySplitInPartsOf(System.String,System.Int32)">
+            <summary>
+            Split a string in parts
+            </summary>
+            <param name="value"></param>
+            <param name="numberOfParts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.UnixToDateTime(System.Double)">
+            <summary>
+            Unix TimeStamp To DateTime
+            </summary>
+            <param name="unixTimestamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.DateTimeToUnix(System.DateTime)">
+            <summary>
+            DateTime To Unix TimeStamp
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToJson(System.String)">
+            <summary>
+            Convert To Json
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToJson(System.Object)">
+            <summary>
+            Convert an Object To Json.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToStream(System.String)">
+            <summary>
+            String to Stream.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.WaitForFile(System.String)">
+            <summary>
+            Wait For A File.
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.GetExtension(System.String)">
+            <summary>
+            Get File Extension Type.
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.GetTrueRandom(System.Int32)">
+            <summary>
+            Generate a true random.
+            </summary>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.Reverse(System.String)">
+            <summary>
+            Reverse a String.
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.Reverse(System.Int32[])">
+            <summary>
+            Reverse a Number Set.
+            </summary>
+            <param name="numbers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToFahrenheit(System.Double)">
+            <summary>
+            Convert From Celsius To Fahrenheit
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToFahrenheit(System.Int32)">
+            <summary>
+            Convert From Celsius To Fahrenheit
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToCelsius(System.Double)">
+            <summary>
+            Convert From Fahrenheit To Celsius
+            </summary>
+            <param name="f"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.ToCelsius(System.Int32)">
+            <summary>
+            Convert From Fahrenheit To Celsius
+            </summary>
+            <param name="f"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.GetDateTimeFromInternet(System.DateTime,System.String)">
+            <summary>
+            Get DateTimeFromInternet
+            </summary>
+            <param name="dt"></param>
+            <param name="username">username required, Sign up for an account http://api.geonames.org</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.GetCoordinates">
+            <summary>
+            Get Current Coordinates
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
