@@ -1,4 +1,5 @@
-# .Net Standard Extenstion Helpers
+# .Net Family Extenstion Helpers
+
 
 ## Summary
 When starting a new project I felt that some of the time I was repeating code.<br>
