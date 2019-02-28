@@ -16,6 +16,7 @@ using System.Xml.Serialization;
 using System.Data.SqlClient;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using System.Drawing;
 
 namespace EbbsSoft
 {
@@ -905,10 +906,12 @@ namespace EbbsSoft
         /// <returns></returns>
         public static string Owner(this ZlpFileInfo zetaFileInfo) => zetaFileInfo.Owner;
 
-        /// <Summary>
-        /// System File Watcher
-        /// Test Required.
-        /// </Summary>      
+        /// <summary>
+        /// System Path Watcher.
+        /// </summary>
+        /// <param name="path">path to watch</param>
+        /// <param name="filter">watch path for files with extension x</param>
+        /// <returns></returns>     
         public static object WatchPath(this string path, string filter = "*.*")
         {
             // Create a file watcher object.
@@ -1506,7 +1509,7 @@ namespace EbbsSoft
         }
 
         /// <summary>
-        /// Generate a true random.
+        /// Generate a true random From 0 to (n)
         /// </summary>
         /// <param name="max"></param>
         /// <returns></returns>
