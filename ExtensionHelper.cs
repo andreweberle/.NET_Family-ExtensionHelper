@@ -46,6 +46,15 @@ namespace EbbsSoft
             UNICODE
         }
 
+        public enum PrintEventType
+        {
+            SUCCESS = 0x000,
+
+            ERROR = 0x0001,
+
+            INFO = 0x0002
+        }
+
         /// <summary>
         /// Get the Enum Value to String
         /// </summary>
@@ -1634,6 +1643,38 @@ namespace EbbsSoft
 
             Task.WaitAll(task);
             return (Convert.ToDecimal(rawData["lat"]), Convert.ToDecimal(rawData["lon"]));
+        }
+
+        /// <summary>
+        /// Print Event Style Message.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="eventType"></param>
+        /// <param name="colour"></param>
+        public static async void PrintEvent(this string context, PrintEventType eventType, System.ConsoleColor colour)
+        {
+            Task task = Task.Run(() =>
+            {
+                $"\n[{eventType.ToString()}]".PrintColouredText(colour, OutputStyle.WRITE);
+                Console.Write("\n" + context);
+            });
+            await task;
+        }
+
+        /// <summary>
+        /// Print Event Style Message.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="eventType"></param>
+        /// <param name="colour"></param>
+        public static async void PrintEvent(this string context, string eventType, System.ConsoleColor colour)
+        {
+            Task task = Task.Run(() =>
+            {              
+                $"\n[{eventType.ToString()}]".PrintColouredText(colour, OutputStyle.WRITE);
+                Console.Write("\n" + context);
+            });
+            await task;
         }
     }
 }

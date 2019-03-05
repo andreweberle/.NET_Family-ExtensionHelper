@@ -318,10 +318,12 @@
             <returns></returns>
         </member>
         <member name="M:EbbsSoft.ExtensionHelper.WatchPath(System.String,System.String)">
-            <Summary>
-            System File Watcher
-            Test Required.
-            </Summary>      
+            <summary>
+            System Path Watcher.
+            </summary>
+            <param name="path">path to watch</param>
+            <param name="filter">watch path for files with extension x</param>
+            <returns></returns>     
         </member>
         <member name="M:EbbsSoft.ExtensionHelper.IsFileLocked(System.String)">
             <Summary>
@@ -576,7 +578,7 @@
         </member>
         <member name="M:EbbsSoft.ExtensionHelper.GetTrueRandom(System.Int32)">
             <summary>
-            Generate a true random.
+            Generate a true random From 0 to (n)
             </summary>
             <param name="max"></param>
             <returns></returns>
@@ -636,6 +638,22 @@
             Get Current Coordinates
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.PrintEvent(System.String,EbbsSoft.ExtensionHelper.PrintEventType,System.ConsoleColor)">
+            <summary>
+            Print Event Style Message.
+            </summary>
+            <param name="context"></param>
+            <param name="eventType"></param>
+            <param name="colour"></param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelper.PrintEvent(System.String,System.String,System.ConsoleColor)">
+            <summary>
+            Print Event Style Message.
+            </summary>
+            <param name="context"></param>
+            <param name="eventType"></param>
+            <param name="colour"></param>
         </member>
     </members>
 </doc>
