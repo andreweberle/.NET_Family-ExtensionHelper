@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
-using EbbsSoft;
+using EbbsSoft.ExtensionHelpers;
 
 namespace MyApplication
 {
