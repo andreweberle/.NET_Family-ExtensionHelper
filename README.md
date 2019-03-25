@@ -83,6 +83,9 @@ starting requesting the extenstion helper class.<br>So from there I created this
    - ToCelsius
    - GetCoordinates
    - GetDateTimeFromInternet
+   - PrintEventLog :: Testing Required.
+   - ToXML
+   - Utf8StringWriter
    
 ## To-Do
 - Create REAL Documentation
