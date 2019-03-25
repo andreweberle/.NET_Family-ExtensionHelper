@@ -11,6 +11,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using EbbsSoft.ExtensionHelpers.BooleanHelpers;
 using ZetaLongPaths;
+using static EbbsSoft.ExtensionHelpers.Overrides.Utils;
 
 namespace EbbsSoft.ExtensionHelpers.StringHelpers
 {
@@ -353,7 +354,7 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
         }
 
         /// <summary>
-        /// Convert an Object To XML
+        /// Convert an Object To CXML
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -374,6 +375,28 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             catch (Exception ex)
             {
                 // Object Couldn't Be Serialized.
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Convert an Object To XML.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string ToXML(this object obj)
+        {
+            try
+            {
+                using (StringWriter sw = new Utf8StringWriter())
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
+                    xmlSerializer.Serialize(sw, obj);
+                    return sw.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
                 throw new Exception(ex.Message);
             }
         }

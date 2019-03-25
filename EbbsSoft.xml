@@ -355,6 +355,16 @@
             <param name="filter">watch path for files with extension x</param>
             <returns></returns>     
         </member>
+        <member name="T:EbbsSoft.ExtensionHelpers.Overrides.Utils.Utf8StringWriter">
+            <summary>
+            UTF-8 String Writer
+            </summary>
+        </member>
+        <member name="P:EbbsSoft.ExtensionHelpers.Overrides.Utils.Utf8StringWriter.Encoding">
+            <summary>
+            Override Encoding Type To UTF-8
+            </summary>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.StreamHelpers.Utils.ToMemoryStream(System.Byte[])">
             <summary>
             Byte Array To Memory Stream
@@ -486,7 +496,14 @@
         </member>
         <member name="M:EbbsSoft.ExtensionHelpers.StringHelpers.Utils.ToCXML(System.Object)">
             <summary>
-            Convert an Object To XML
+            Convert an Object To CXML
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.StringHelpers.Utils.ToXML(System.Object)">
+            <summary>
+            Convert an Object To XML.
             </summary>
             <param name="obj"></param>
             <returns></returns>
