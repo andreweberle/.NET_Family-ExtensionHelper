@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Drawing;
 
 namespace EbbsSoft.ExtensionHelpers.ByteHelpers
 {
@@ -20,6 +21,20 @@ namespace EbbsSoft.ExtensionHelpers.ByteHelpers
                 {
                     ms.Write(buffer, 0, read);
                 }
+                return ms.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Image To Byte Array.
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        public static byte[] ImageToBytes(this Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                 return ms.ToArray();
             }
         }

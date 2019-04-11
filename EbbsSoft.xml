@@ -214,6 +214,13 @@
             <param name="stream"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.ByteHelpers.Utils.ImageToBytes(System.Drawing.Image)">
+            <summary>
+            Image To Byte Array.
+            </summary>
+            <param name="image"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.CharHelpers.Utils.RecuriveChar(System.String)">
             <summary>
             Returns the first Recurive Char of a string.
@@ -586,6 +593,20 @@
             </Summary>
             <param name="str">Value</param>
             <returns>string [CamelCase]</returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.StringHelpers.Utils.PathFromSolutionFolder(System.String)">
+            <summary>
+            Get File From Solution Folder Application.
+            </summary>
+            <param name="filePath">Path Within Solution</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.StringHelpers.Utils.PathFromSolutionFolderWeb(System.String)">
+            <summary>
+            Get File From Solution Folder Web.
+            </summary>
+            <param name="filePath">Path Within Solution</param>
+            <returns></returns>
         </member>
         <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.PrintEvent(System.String,EbbsSoft.ExtensionHelpers.EnumHelpers.Utils.PrintEventType,System.ConsoleColor)">
             <summary>

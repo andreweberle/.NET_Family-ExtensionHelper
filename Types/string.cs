@@ -554,5 +554,25 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             }
             return str;
         }
+
+        /// <summary>
+        /// Get File From Solution Folder Application.
+        /// </summary>
+        /// <param name="filePath">Path Within Solution</param>
+        /// <returns></returns>
+        public static string PathFromSolutionFolder(this string filePath)
+        {
+            return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filePath);
+        }
+
+        /// <summary>
+        /// Get File From Solution Folder Web.
+        /// </summary>
+        /// <param name="filePath">Path Within Solution</param>
+        /// <returns></returns>
+        public static string PathFromSolutionFolderWeb(this string filePath)
+        {
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory,filePath);
+        }
     }
 }
