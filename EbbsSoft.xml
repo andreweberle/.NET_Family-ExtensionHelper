@@ -207,6 +207,13 @@
             <param name="filePath1"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsPostOfficeBox(System.String)">
+            <summary>
+            Check If The Given Address Is A PostOffice Or Not.
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.ByteHelpers.Utils.StreamToByteArray(System.IO.Stream)">
             <summary>
             Convert Stream To Byte Array

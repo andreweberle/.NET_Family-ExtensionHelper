@@ -198,7 +198,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         /// <returns></returns>
         public static bool IsOdd(this int value) => value % 2 != 0;
 
-                /// <summary>
+        /// <summary>
         /// Check For Empty String
         /// </summary>
         /// <param name="str"></param>
@@ -288,7 +288,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
             return true;
         }
 
-                /// <summary>
+        /// <summary>
         /// Validate An Australian Phone Number
         /// eg 0354xxxxxx | 0412xxxxxx
         /// </summary>
@@ -475,6 +475,16 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
             // If the base file (V1) is lower than V2
             // than this means that the base file is out of date.
             return v1 < v2;
+        }
+
+        /// <summary>
+        /// Check If The Given Address Is A PostOffice Or Not.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public static bool IsPostOfficeBox(this string address)
+        {
+            return new System.Text.RegularExpressions.Regex(@"(?i)\b(?:p(?:ost)?\.?\s*(?:[o0](?:ffice)?)?\.?\s*b(?:[o0]x)?|b[o0]x)").IsMatch(address);
         }
     }
 }
