@@ -574,5 +574,7 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory,filePath);
         }
+
+        
     }
 }

@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using EbbsSoft.ExtensionHelpers.StringHelpers;
 
 namespace EbbsSoft.ExtensionHelpers.IntegerHelpers
@@ -107,6 +109,32 @@ namespace EbbsSoft.ExtensionHelpers.IntegerHelpers
             }
             // Return The Age From DateTime.
             return age;
+        }
+
+        /// <summary>
+        /// Get File Size From URL
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static long GetFileSizeFromURL(this string url)
+        {
+            long size = -1;
+
+            Task task = Task.Run(async () =>
+            {
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    using (HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url))
+                    {
+                        using (HttpContent httpContent = httpResponseMessage.Content)
+                        {
+                            size = int.Parse(httpContent.Headers.First(h => h.Key.Equals("Content-Length")).Value.First());
+                        }
+                    }
+                }
+            });
+            Task.WaitAll(task);
+            return size;
         }
     }
 }
