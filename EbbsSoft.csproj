@@ -3,6 +3,14 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NeutralLanguage />
+    <PackageId>1a2b3c-4d5e_EbbsSoft</PackageId>
+    <Description>A .NET Standard Extension Helper.</Description>
+    <Authors>Andrew Eberle</Authors>
+    <PackageTags>C# .NET Extenstion Helper EbbsSoft</PackageTags>
+    <Company>EbbsSoft</Company>
+    <Product>.NET Standard Extension Helper</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -10,14 +18,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.4.5" />
+    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.5.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="ZetaLongPaths" Version="1.0.0.27" />
-    <PackageReference Include="ZetaLongPaths.NetStandard" Version="1.0.0.27" />
+    <PackageReference Include="ZetaLongPaths" Version="1.0.0.28" />
+    <PackageReference Include="ZetaLongPaths.NetStandard" Version="1.0.0.28" />
   </ItemGroup>
 
   <ItemGroup>

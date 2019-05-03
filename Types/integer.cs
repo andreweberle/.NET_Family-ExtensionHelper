@@ -136,5 +136,49 @@ namespace EbbsSoft.ExtensionHelpers.IntegerHelpers
             Task.WaitAll(task);
             return size;
         }
+
+        /// <summary>
+        /// Get Last (n) of an int
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static int GetLast(this int source, int n)
+        {
+            return Convert.ToInt32(StringHelpers.Utils.GetLast(source.ToString(), n));
+        }
+        
+        /// <summary>
+        /// Get Last (n) of a decimal
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static decimal GetLast(this decimal source, int n)
+        {
+            return Convert.ToDecimal(StringHelpers.Utils.GetLast(source.ToString(), n));
+        }
+
+        /// <summary>
+        /// Get Last (n) of a double
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static double GetLast(this double source, int n)
+        {
+            return Convert.ToDouble(StringHelpers.Utils.GetLast(source.ToString(), n));
+        }
+
+        /// <summary>
+        /// Get Last (n) of a long
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static long GetLast(this long source, int n)
+        {
+            return Convert.ToInt64(StringHelpers.Utils.GetLast(source.ToString(), n));
+        }
     }
 }

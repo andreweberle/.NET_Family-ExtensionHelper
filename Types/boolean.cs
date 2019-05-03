@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using EbbsSoft.ExtensionHelpers.StringHelpers;
 
@@ -484,7 +485,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         /// <returns></returns>
         public static bool IsPostOfficeBox(this string address)
         {
-            return new System.Text.RegularExpressions.Regex(@"(?i)\b(?:p(?:ost)?\.?\s*(?:[o0](?:ffice)?)?\.?\s*b(?:[o0]x)?|b[o0]x)").IsMatch(address);
+            return new Regex(@"(?i)\b(?:p(?:ost)?\.?\s*(?:[o0](?:ffice)?)?\.?\s*b(?:[o0]x)?|b[o0]x)").IsMatch(address);
         }
     }
 }

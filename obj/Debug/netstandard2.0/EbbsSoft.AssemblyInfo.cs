@@ -13,9 +13,10 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("EbbsSoft")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("A .NET Standard Extension Helper.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("EbbsSoft")]
+[assembly: System.Reflection.AssemblyProductAttribute(".NET Standard Extension Helper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EbbsSoft")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 

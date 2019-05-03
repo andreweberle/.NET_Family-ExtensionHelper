@@ -575,6 +575,15 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory,filePath);
         }
 
-        
+        /// <summary>
+        /// Get The Last (n) of a String.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static string GetLast(this string str, int n)
+        {
+            return n >= str.Length ? str.Substring(0, str.Length - n) : null;
+        }   
     }
 }

@@ -361,6 +361,45 @@
             <param name="dateTime">Birthday</param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.IntegerHelpers.Utils.GetFileSizeFromURL(System.String)">
+            <summary>
+            Get File Size From URL
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.IntegerHelpers.Utils.GetLast(System.Int32,System.Int32)">
+            <summary>
+            Get Last (n) of an int
+            </summary>
+            <param name="source"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.IntegerHelpers.Utils.GetLast(System.Decimal,System.Int32)">
+            <summary>
+            Get Last (n) of a decimal
+            </summary>
+            <param name="source"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.IntegerHelpers.Utils.GetLast(System.Double,System.Int32)">
+            <summary>
+            Get Last (n) of a double
+            </summary>
+            <param name="source"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.IntegerHelpers.Utils.GetLast(System.Int64,System.Int32)">
+            <summary>
+            Get Last (n) of a long
+            </summary>
+            <param name="source"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.ObjectHelpers.Utils.WatchPath(System.String,System.String)">
             <summary>
             System Path Watcher.
@@ -613,6 +652,14 @@
             Get File From Solution Folder Web.
             </summary>
             <param name="filePath">Path Within Solution</param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.StringHelpers.Utils.GetLast(System.String,System.Int32)">
+            <summary>
+            Get The Last (n) of a String.
+            </summary>
+            <param name="str"></param>
+            <param name="n"></param>
             <returns></returns>
         </member>
         <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.PrintEvent(System.String,EbbsSoft.ExtensionHelpers.EnumHelpers.Utils.PrintEventType,System.ConsoleColor)">
