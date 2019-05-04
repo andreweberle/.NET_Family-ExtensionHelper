@@ -584,6 +584,16 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
         public static string GetLast(this string str, int n)
         {
             return n >= str.Length ? str.Substring(0, str.Length - n) : null;
-        }   
+        } 
+
+        /// <summary>
+        /// Return The Paths Directory Name Only.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string GetDirectoryName(this string path)
+        {
+            return System.IO.Path.GetDirectoryName(path) ?? null;
+        }  
     }
 }

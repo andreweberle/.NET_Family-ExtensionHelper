@@ -662,6 +662,13 @@
             <param name="n"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.StringHelpers.Utils.GetDirectoryName(System.String)">
+            <summary>
+            Return The Paths Directory Name Only.
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.PrintEvent(System.String,EbbsSoft.ExtensionHelpers.EnumHelpers.Utils.PrintEventType,System.ConsoleColor)">
             <summary>
             Print Event Style Message.
