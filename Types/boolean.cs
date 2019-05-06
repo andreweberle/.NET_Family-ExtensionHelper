@@ -487,5 +487,99 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         {
             return new Regex(@"(?i)\b(?:p(?:ost)?\.?\s*(?:[o0](?:ffice)?)?\.?\s*b(?:[o0]x)?|b[o0]x)").IsMatch(address);
         }
+                        /// <summary>
+        /// Moves files from one directory to another.
+        /// </summary>
+        /// <param name="sourceDirectory"></param>
+        /// <param name="destinationDirectory"></param>
+        public static bool TryMoveFilesTo(this string sourceDirectory, string destinationDirectory)
+        {
+            if (EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsValidDirectoryPath(sourceDirectory) && (EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsValidDirectoryPath(destinationDirectory)))
+            {
+                // Loop through each file and move it to the destination directory
+                Directory.GetFiles(sourceDirectory).ToList()
+                                                   .ForEach(file => File.Move(file, destinationDirectory + "\\" + Path.GetFileName(file)));
+                
+                // TODO: Fix
+                return true;
+            }
+            else
+            {
+                throw new Exception("Source Or Destination Not Valid");
+            }
+        }
+
+        /// <summary>
+        /// Create a new directory
+        /// </summary>
+        /// <param name="path">path to new directory</param>
+        public static bool TryCreateDirectory(this string path)
+        {
+            Directory.CreateDirectory(path);
+            return IsValidDirectoryPath(path);
+        }
+
+        /// <summary>
+        /// Copy File To Destination
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="destination"></param>
+        /// <returns></returns>
+        public static bool TryCopyFile(this string path, string destination)
+        {
+            File.Copy(path, destination);
+            return destination.IsValidFilePath();
+        }
+
+        /// <summary>
+        /// Copy directory to a new destination
+        /// </summary>
+        /// <param name="sourceDirectory">Source Directory</param>
+        /// <param name="targetDirectory">Targe Directory</param>
+        public static bool TryCopyDirectory(this string sourceDirectory, string targetDirectory)
+        {
+            if (sourceDirectory.IsValidDirectoryPath())
+            {
+                _CopyDirectory(sourceDirectory, targetDirectory);
+                return IsValidDirectoryPath(targetDirectory);
+            }
+            else
+            {
+                throw new Exception("Source Directory Not Valid");
+            }
+        }
+
+                /// <summary>
+        /// C# Has no built in Folder Copy Function like VB.NET
+        /// https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.aspx
+        /// Call Method using eg CopyDirectory(sourceDir,destinationDir);
+        /// </summary>
+        /// <param name="sourceDirectory">Source Directory Path</param>
+        /// <param name="targetDirectory">Destination Directory Path</param>
+        private static void _CopyDirectory(string sourceDirectory, string targetDirectory)
+        {
+            DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
+            DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
+            CopyAll(diSource, diTarget);
+        }
+        private static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        {
+            // Create a new directory with the target directories name
+            Directory.CreateDirectory(target.FullName);
+
+            // Copy each file into the new directory.
+            foreach (FileInfo fi in source.GetFiles())
+            {
+                //Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
+                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+            }
+
+            // Copy each subdirectory using recursion.
+            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+            {
+                DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
+                CopyAll(diSourceSubDir, nextTargetSubDir);
+            }
+        }
     }
 }

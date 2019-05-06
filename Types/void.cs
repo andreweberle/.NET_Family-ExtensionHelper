@@ -85,39 +85,6 @@ namespace EbbsSoft.ExtensionHelpers.VoidHelpers
             y = temp;
         }
 
-        /// <summary>
-        /// C# Has no built in Folder Copy Function like VB.NET
-        /// https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.aspx
-        /// Call Method using eg CopyDirectory(sourceDir,destinationDir);
-        /// </summary>
-        /// <param name="sourceDirectory">Source Directory Path</param>
-        /// <param name="targetDirectory">Destination Directory Path</param>
-        private static void _CopyDirectory(string sourceDirectory, string targetDirectory)
-        {
-            DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
-            DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
-            CopyAll(diSource, diTarget);
-        }
-        private static void CopyAll(DirectoryInfo source, DirectoryInfo target)
-        {
-            // Create a new directory with the target directories name
-            Directory.CreateDirectory(target.FullName);
-
-            // Copy each file into the new directory.
-            foreach (FileInfo fi in source.GetFiles())
-            {
-                //Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
-                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
-            }
-
-            // Copy each subdirectory using recursion.
-            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
-            {
-                DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
-                CopyAll(diSourceSubDir, nextTargetSubDir);
-            }
-        }
-
         /// <Summary>
         /// Write Coloured Text To The Console.
         /// </Summary>
@@ -145,42 +112,5 @@ namespace EbbsSoft.ExtensionHelpers.VoidHelpers
             // Restore the console foreground colour
             Console.ForegroundColor = currentForeground;
         }
-    
-                /// <summary>
-        /// Moves files from one directory to another.
-        /// </summary>
-        /// <param name="sourceDirectory"></param>
-        /// <param name="destinationDirectory"></param>
-        public static void TryMoveFilesTo(this string sourceDirectory, string destinationDirectory)
-        {
-            if (EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsValidDirectoryPath(sourceDirectory) && (EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsValidDirectoryPath(destinationDirectory)))
-            {
-                // Loop through each file and move it to the destination directory
-                Directory.GetFiles(sourceDirectory).ToList()
-                                                   .ForEach(file => File.Move(file, destinationDirectory + "\\" + Path.GetFileName(file)));
-            }
-        }
-
-        /// <summary>
-        /// Create a new directory
-        /// </summary>
-        /// <param name="path">path to new directory</param>
-        public static void TryCreateDirectory(this string path) => Directory.CreateDirectory(path);
-
-        /// <summary>
-        /// Copy directory to a new destination
-        /// </summary>
-        /// <param name="sourceDirectory">Source Directory</param>
-        /// <param name="targetDirectory">Targe Directory</param>
-        public static void TryCopyDirectory(this string sourceDirectory, string targetDirectory)
-        {
-            if (sourceDirectory.IsValidDirectoryPath())
-            {
-                _CopyDirectory(sourceDirectory, targetDirectory);
-                return;
-            }
-            throw new Exception("Source Directory Not Valid");
-        }
-    
     }
 }

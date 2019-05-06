@@ -214,6 +214,43 @@
             <param name="address"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.TryMoveFilesTo(System.String,System.String)">
+            <summary>
+            Moves files from one directory to another.
+            </summary>
+            <param name="sourceDirectory"></param>
+            <param name="destinationDirectory"></param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.TryCreateDirectory(System.String)">
+            <summary>
+            Create a new directory
+            </summary>
+            <param name="path">path to new directory</param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.TryCopyFile(System.String,System.String)">
+            <summary>
+            Copy File To Destination
+            </summary>
+            <param name="path"></param>
+            <param name="destination"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.TryCopyDirectory(System.String,System.String)">
+            <summary>
+            Copy directory to a new destination
+            </summary>
+            <param name="sourceDirectory">Source Directory</param>
+            <param name="targetDirectory">Targe Directory</param>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils._CopyDirectory(System.String,System.String)">
+            <summary>
+            C# Has no built in Folder Copy Function like VB.NET
+            https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.aspx
+            Call Method using eg CopyDirectory(sourceDir,destinationDir);
+            </summary>
+            <param name="sourceDirectory">Source Directory Path</param>
+            <param name="targetDirectory">Destination Directory Path</param>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.ByteHelpers.Utils.StreamToByteArray(System.IO.Stream)">
             <summary>
             Convert Stream To Byte Array
@@ -669,6 +706,14 @@
             <param name="path"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.T_Helpers.Utils.RemoveNullItemsToList``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Remove Null Items From A List.
+            </summary>
+            <param name="list"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.PrintEvent(System.String,EbbsSoft.ExtensionHelpers.EnumHelpers.Utils.PrintEventType,System.ConsoleColor)">
             <summary>
             Print Event Style Message.
@@ -709,39 +754,10 @@
             <param name="x"></param>
             <param name="y"></param>
         </member>
-        <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils._CopyDirectory(System.String,System.String)">
-            <summary>
-            C# Has no built in Folder Copy Function like VB.NET
-            https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.aspx
-            Call Method using eg CopyDirectory(sourceDir,destinationDir);
-            </summary>
-            <param name="sourceDirectory">Source Directory Path</param>
-            <param name="targetDirectory">Destination Directory Path</param>
-        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.PrintColouredText(System.ConsoleColor,System.ConsoleColor,System.String,EbbsSoft.ExtensionHelpers.EnumHelpers.Utils.OutputStyle)">
             <Summary>
             Write Coloured Text To The Console.
             </Summary>
-        </member>
-        <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.TryMoveFilesTo(System.String,System.String)">
-            <summary>
-            Moves files from one directory to another.
-            </summary>
-            <param name="sourceDirectory"></param>
-            <param name="destinationDirectory"></param>
-        </member>
-        <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.TryCreateDirectory(System.String)">
-            <summary>
-            Create a new directory
-            </summary>
-            <param name="path">path to new directory</param>
-        </member>
-        <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.TryCopyDirectory(System.String,System.String)">
-            <summary>
-            Copy directory to a new destination
-            </summary>
-            <param name="sourceDirectory">Source Directory</param>
-            <param name="targetDirectory">Targe Directory</param>
         </member>
         <member name="M:EbbsSoft.ExtensionHelpers.XmlHelpers.Utils.ToXmlDocument(System.Xml.Linq.XDocument)">
             <summary>
