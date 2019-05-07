@@ -37,6 +37,23 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
             return false;
         }
 
+        
+        /// <summary>
+        /// Wait For A File.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static bool WaitForFile(this string filePath, double milliseconds)
+        {
+            do
+            {
+                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(milliseconds));
+            }
+            while (EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsFileLocked(filePath));
+            
+            return false;
+        }
+
         /// <summary>
         /// Check If Its a Public Holiday
         /// </summary>

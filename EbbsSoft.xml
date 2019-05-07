@@ -19,6 +19,13 @@
             <param name="filePath"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.WaitForFile(System.String,System.Double)">
+            <summary>
+            Wait For A File.
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsHoliday(System.DateTime)">
             <summary>
             Check If Its a Public Holiday
