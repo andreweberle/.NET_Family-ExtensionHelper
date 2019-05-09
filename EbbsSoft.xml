@@ -258,6 +258,14 @@
             <param name="sourceDirectory">Source Directory Path</param>
             <param name="targetDirectory">Destination Directory Path</param>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.StringMaxLength(System.String,System.Int32)">
+            <summary>
+            Set A String Char Length
+            </summary>
+            <param name="str"></param>
+            <param name="maxLength"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.ByteHelpers.Utils.StreamToByteArray(System.IO.Stream)">
             <summary>
             Convert Stream To Byte Array

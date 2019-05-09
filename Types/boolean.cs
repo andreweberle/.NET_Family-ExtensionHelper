@@ -598,5 +598,16 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
                 CopyAll(diSourceSubDir, nextTargetSubDir);
             }
         }
+
+        /// <summary>
+        /// Set A String Char Length
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="maxLength"></param>
+        /// <returns></returns>
+        public static bool StringMaxLength(this string str, int maxLength)
+        {
+            return str.Length <= maxLength ? true : false;
+        }
     }
 }
