@@ -607,7 +607,14 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         /// <returns></returns>
         public static bool StringMaxLength(this string str, int maxLength)
         {
-            return str.Length <= maxLength ? true : false;
+            if (str.IsEmpty())
+            {
+                return true;
+            }
+            else
+            {
+                return str.Length <= maxLength ? true : false;
+            }
         }
     }
 }
