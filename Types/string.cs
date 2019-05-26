@@ -202,8 +202,7 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
         /// <returns></returns>
         public static string GetMimeType(this string filePathLocation)
         {
-            // Check If The Operating System If Supported.
-            if (EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsWindows)
+            try
             {
                 if (filePathLocation.IsValidFilePath())
                 {
@@ -218,6 +217,11 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
                     return mimeType;
                 }
             }
+            catch (Exception ex)
+            {
+                return "application/unknown";
+            }
+
             return "application/unknown";
         }
 

@@ -370,7 +370,7 @@
           "lib/netstandard1.3/System.Collections.NonGeneric.dll": {}
         }
       },
-      "System.Data.SqlClient/4.6.0": {
+      "System.Data.SqlClient/4.6.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.Registry": "4.5.0",
@@ -1355,7 +1355,7 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
-      "ZetaLongPaths/1.0.0.28": {
+      "ZetaLongPaths/1.0.0.29": {
         "type": "package",
         "compile": {
           "lib/net452-full/ZetaLongPaths.dll": {}
@@ -1364,7 +1364,7 @@
           "lib/net452-full/ZetaLongPaths.dll": {}
         }
       },
-      "ZetaLongPaths.NetStandard/1.0.0.28": {
+      "ZetaLongPaths.NetStandard/1.0.0.29": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.Primitives": "4.0.1",
@@ -2233,10 +2233,10 @@
         "system.collections.nongeneric.nuspec"
       ]
     },
-    "System.Data.SqlClient/4.6.0": {
-      "sha512": "gwItUWW1BMCckicFO85c8frFaMK8SGqYn5IeA3GSX4Lmid+CjXETfoHz7Uv+Vx6L0No7iRc/7cBL8gd6o9k9/g==",
+    "System.Data.SqlClient/4.6.1": {
+      "sha512": "7MTJhBFt4/tSJ2VRpG+TQNPcDdbCnWuoYzbe0kD5O3mQ7aZ2Q+Q3D9Y5Y3/aper5Gp3Lrs+8edk9clvxyPYXPw==",
       "type": "package",
-      "path": "system.data.sqlclient/4.6.0",
+      "path": "system.data.sqlclient/4.6.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2301,7 +2301,7 @@
         "runtimes/win/lib/netstandard1.3/System.Data.SqlClient.dll",
         "runtimes/win/lib/netstandard2.0/System.Data.SqlClient.dll",
         "runtimes/win/lib/uap10.0.16299/System.Data.SqlClient.dll",
-        "system.data.sqlclient.4.6.0.nupkg.sha512",
+        "system.data.sqlclient.4.6.1.nupkg.sha512",
         "system.data.sqlclient.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -5232,30 +5232,30 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
-    "ZetaLongPaths/1.0.0.28": {
-      "sha512": "FGfRBJVqajtCF4cdqvLT0s/xdOlcuAwFsbwrOBCwehsmVviSp/wKg/AGz86h1kTzanMiZO+bCmmpJ10GPlj2eg==",
+    "ZetaLongPaths/1.0.0.29": {
+      "sha512": "iCperpphzA4Y3vLfFIrWJr9q3pelVI2o9EW/ZDYuosjlBeLp+VEoRbSAEyeCebRVeivkXbcp0RufQ0Mym2yE1w==",
       "type": "package",
-      "path": "zetalongpaths/1.0.0.28",
+      "path": "zetalongpaths/1.0.0.29",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net452-full/ZetaLongPaths.dll",
         "lib/net452-full/ZetaLongPaths.pdb",
-        "zetalongpaths.1.0.0.28.nupkg.sha512",
+        "zetalongpaths.1.0.0.29.nupkg.sha512",
         "zetalongpaths.nuspec"
       ]
     },
-    "ZetaLongPaths.NetStandard/1.0.0.28": {
-      "sha512": "9PZoCwH0cOCCpg3yfflIo57TnkTQz4zlsj1OIdPv+JCdHH5+/9aDxioYtb/EYX9yLIyNbBL0i96LP5brk9fTOw==",
+    "ZetaLongPaths.NetStandard/1.0.0.29": {
+      "sha512": "EQjzm2UqnzwDKCkAEaBjOJPYoDeCdCdHeJh1aTwmSAW0egyFD3in7v+BBjZ3AVrlAxgRDAMEwMSaK4AP0dsxig==",
       "type": "package",
-      "path": "zetalongpaths.netstandard/1.0.0.28",
+      "path": "zetalongpaths.netstandard/1.0.0.29",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard1.6/ZetaLongPaths.dll",
         "lib/netstandard1.6/ZetaLongPaths.pdb",
         "lib/netstandard1.6/de/ZetaLongPaths.resources.dll",
-        "zetalongpaths.netstandard.1.0.0.28.nupkg.sha512",
+        "zetalongpaths.netstandard.1.0.0.29.nupkg.sha512",
         "zetalongpaths.netstandard.nuspec"
       ]
     }
@@ -5266,10 +5266,10 @@
       "Microsoft.Win32.Registry >= 4.5.0",
       "NETStandard.Library >= 2.0.3",
       "Newtonsoft.Json >= 12.0.2",
-      "System.Data.SqlClient >= 4.6.0",
+      "System.Data.SqlClient >= 4.6.1",
       "System.Dynamic.Runtime >= 4.3.0",
-      "ZetaLongPaths >= 1.0.0.28",
-      "ZetaLongPaths.NetStandard >= 1.0.0.28",
+      "ZetaLongPaths >= 1.0.0.29",
+      "ZetaLongPaths.NetStandard >= 1.0.0.29",
       "iTextSharp.LGPLv2.Core >= 1.5.0"
     ]
   },
@@ -5337,7 +5337,7 @@
           },
           "System.Data.SqlClient": {
             "target": "Package",
-            "version": "[4.6.0, )"
+            "version": "[4.6.1, )"
           },
           "System.Dynamic.Runtime": {
             "target": "Package",
@@ -5345,11 +5345,11 @@
           },
           "ZetaLongPaths": {
             "target": "Package",
-            "version": "[1.0.0.28, )"
+            "version": "[1.0.0.29, )"
           },
           "ZetaLongPaths.NetStandard": {
             "target": "Package",
-            "version": "[1.0.0.28, )"
+            "version": "[1.0.0.29, )"
           },
           "iTextSharp.LGPLv2.Core": {
             "target": "Package",
@@ -5369,7 +5369,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'ZetaLongPaths 1.0.0.28' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'ZetaLongPaths 1.0.0.29' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
       "libraryId": "ZetaLongPaths",
       "targetGraphs": [
         ".NETStandard,Version=v2.0"
