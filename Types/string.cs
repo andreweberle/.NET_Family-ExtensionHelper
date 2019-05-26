@@ -218,12 +218,7 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
                     return mimeType;
                 }
             }
-            else
-            {
-                throw new Exception(string.Format("--OPERATING SYSTEM ({0}) NOT SUPPORTED--", RuntimeInformation.OSDescription));
-            }
-            
-            return null;
+            return "application/unknown";
         }
 
 
