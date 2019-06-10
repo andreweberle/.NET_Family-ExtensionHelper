@@ -245,7 +245,6 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             }
             else
             {
-                Console.WriteLine("Invalid file path");
                 throw new Exception("Invalid file path");
             }
         }
@@ -363,9 +362,8 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             {
                 using (StringWriter sw = new StringWriter())
                 {
-                    XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
+                    XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());                
                     xmlSerializer.Serialize(sw, obj);
-
                     return sw.ToString()
                              .Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", 
                                       "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE cXML SYSTEM \"http://xml.cXML.org/schemas/cXML/1.2.021/cXML.dtd\">");

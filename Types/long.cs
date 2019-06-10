@@ -18,12 +18,15 @@ namespace EbbsSoft.ExtensionHelpers.LongHelpers
         public static long DirectorySize(this DirectoryInfo dirInfo)
         {
             long size = 0;
-            FileInfo[] fileIndo = dirInfo.GetFiles();
+            
+            FileInfo[] fileInfo = dirInfo.GetFiles();
             foreach (var file in fileIndo)
             {
                 size += file.Length;
             }
+
             DirectoryInfo[] subDirInfo = dirInfo.GetDirectories();
+            
             foreach (var subDir in subDirInfo)
             {
                 size += subDir.DirectorySize();
