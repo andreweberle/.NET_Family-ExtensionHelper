@@ -12,6 +12,14 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsNotNull``1(``0)">
+            <summary>
+            Check if an object is not null.
+            </summary>
+            <param name="obj"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.WaitForFile(System.String)">
             <summary>
             Wait For A File.
@@ -264,6 +272,20 @@
             </summary>
             <param name="str"></param>
             <param name="maxLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsValidDecimal(System.String)">
+            <summary>
+            Check If The Given Decimal Is OK.
+            </summary>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsValidDecimal``1(``0)">
+            <summary>
+            Check If The Given Decimal Is OK.
+            </summary>
+            <param name="obj"></param>
             <returns></returns>
         </member>
         <member name="M:EbbsSoft.ExtensionHelpers.ByteHelpers.Utils.StreamToByteArray(System.IO.Stream)">
@@ -606,7 +628,7 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
-        <member name="M:EbbsSoft.ExtensionHelpers.StringHelpers.Utils.ToXML(System.Object)">
+        <member name="M:EbbsSoft.ExtensionHelpers.StringHelpers.Utils.ToXML(System.Object,System.Boolean)">
             <summary>
             Convert an Object To XML.
             </summary>

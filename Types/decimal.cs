@@ -6,7 +6,7 @@ namespace EbbsSoft.ExtensionHelpers.DecimalsHelpers
 {
     public static class Utils
     {
-                /// <summary>
+         /// <summary>
         /// Get Current Coordinates
         /// </summary>
         /// <returns></returns>

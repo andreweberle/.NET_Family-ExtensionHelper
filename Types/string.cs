@@ -384,15 +384,27 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static string ToXML(this object obj)
+        public static string ToXML(this object obj, bool utf8)
         {
             try
             {
-                using (StringWriter sw = new Utf8StringWriter())
+                if (utf8)
                 {
-                    XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
-                    xmlSerializer.Serialize(sw, obj);
-                    return sw.ToString();
+                    using (StringWriter sw = new Utf8StringWriter())
+                    {
+                        XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
+                        xmlSerializer.Serialize(sw, obj);
+                        return sw.ToString();
+                    }
+                }
+                else
+                {
+                    using (StringWriter sw = new StringWriter())
+                    {
+                        XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
+                        xmlSerializer.Serialize(sw, obj);
+                        return sw.ToString();
+                    }
                 }
             }
             catch (Exception ex)

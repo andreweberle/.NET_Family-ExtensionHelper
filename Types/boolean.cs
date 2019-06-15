@@ -22,6 +22,14 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         public static bool IsNull<T>(this T obj) => obj == null ? true : false;
 
         /// <summary>
+        /// Check if an object is not null.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static bool IsNotNull<T>(this T obj) => obj != null ? false: true;
+
+        /// <summary>
         /// Wait For A File.
         /// </summary>
         /// <param name="filePath"></param>
@@ -566,7 +574,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
             }
         }
 
-                /// <summary>
+        /// <summary>
         /// C# Has no built in Folder Copy Function like VB.NET
         /// https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.aspx
         /// Call Method using eg CopyDirectory(sourceDir,destinationDir);
@@ -616,5 +624,22 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
                 return str.Length <= maxLength ? true : false;
             }
         }
+
+        /// <summary>
+        /// Check If The Given Decimal Is OK.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static bool IsValidDecimal(this string n)
+        {
+            return Decimal.TryParse(n, out decimal result);
+        }
+
+        /// <summary>
+        /// Check If The Given Decimal Is OK.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static bool IsValidDecimal<T>(this T obj) => IsValidDecimal(Convert.ToString(obj));
     }
 }

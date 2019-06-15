@@ -28,9 +28,9 @@ namespace EbbsSoft.ExtensionHelpers.EnumHelpers
 
         public enum PrintEventType
         {
-            SUCCESS = 0x000,
-            ERROR = 0x0001,
-            INFO = 0x0002
+            SUCCESS = 0x00,
+            ERROR = 0x01,
+            INFO = 0x02
         }
 
         /// <summary>
