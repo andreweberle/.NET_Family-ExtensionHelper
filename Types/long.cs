@@ -20,7 +20,7 @@ namespace EbbsSoft.ExtensionHelpers.LongHelpers
             long size = 0;
             
             FileInfo[] fileInfo = dirInfo.GetFiles();
-            foreach (var file in fileIndo)
+            foreach (var file in fileInfo)
             {
                 size += file.Length;
             }
