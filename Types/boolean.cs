@@ -360,7 +360,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
             // accepted the email address and we will return false from the catch statement.
             try
             {
-                System.Net.Mail.MailAddress mailAddress = new System.Net.Mail.MailAddress(emailAddress);
+                var mailAddress = new System.Net.Mail.MailAddress(emailAddress);
                 return mailAddress.Address == emailAddress;
             }
             catch

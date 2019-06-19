@@ -474,6 +474,13 @@
             <param name="n"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.LongHelpers.Utils.DirectorySize(System.IO.DirectoryInfo)">
+            <summary>
+            Calculate Directory Size.
+            </summary>
+            <param name="dirInfo"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.ObjectHelpers.Utils.WatchPath(System.String,System.String)">
             <summary>
             System Path Watcher.

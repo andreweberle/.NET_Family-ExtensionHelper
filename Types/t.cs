@@ -17,5 +17,10 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
         {
             return list.Where(x => x != null).ToList();
         }
+
+        // public static List<T> RemoveBlankItemsToList<T>(this List<T> list)
+        // {
+        //     return list.Where(x => x)
+        // }
     }
 }

@@ -172,6 +172,10 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             for (int i = 0; i < list.Count; i++)
             {
                 TypeCode typeCode = (TypeCode)list[i];
+
+                // Loop Each Object That We Are Unble To Use.
+                // From There We Will Calculate The Result.
+                // Return To The Caller.
                 foreach (int unuseableType in UNCONVERTABLE_OBJECT_TYPES)
                 {
                     if (Type.GetTypeCode(bytes.GetType()) == (TypeCode)unuseableType)
