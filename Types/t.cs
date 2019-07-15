@@ -13,14 +13,22 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
         /// <param name="list"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static List<T> RemoveNullItemsToList<T>(this List<T> list)
-        {
-            return list.Where(x => x != null).ToList();
-        }
+        public static List<T> RemoveNullItemsToList<T>(this List<T> list) => list.Where(x => x != null).ToList();
 
-        // public static List<T> RemoveBlankItemsToList<T>(this List<T> list)
-        // {
-        //     return list.Where(x => x)
-        // }
+        /// <summary>
+        /// Attempt To Read All Innter Exceptions From The Hierarchy
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <returns></returns>
+        public static IEnumerable<Exception> TryGetInnerExceptionsErrors(this Exception exception)
+        {
+            System.Exception ex = exception;
+
+            while (ex != null)         
+            {
+                yield return ex;
+                ex = ex.InnerException;
+            }
+        }
     }
 }

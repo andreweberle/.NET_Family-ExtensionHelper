@@ -758,6 +758,13 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.T_Helpers.Utils.TryGetInnerExceptionsErrors(System.Exception)">
+            <summary>
+            Attempt To Read All Innter Exceptions From The Hierarchy
+            </summary>
+            <param name="exception"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.PrintEvent(System.String,EbbsSoft.ExtensionHelpers.EnumHelpers.Utils.PrintEventType,System.ConsoleColor)">
             <summary>
             Print Event Style Message.
