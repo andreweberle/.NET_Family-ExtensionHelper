@@ -587,6 +587,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
             DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
             CopyAll(diSource, diTarget);
         }
+        
         private static void CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
             // Create a new directory with the target directories name
@@ -630,10 +631,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
-        public static bool IsValidDecimal(this string n)
-        {
-            return Decimal.TryParse(n, out decimal result);
-        }
+        public static bool IsValidDecimal(this string n) => Decimal.TryParse(n, out decimal result);
 
         /// <summary>
         /// Check If The Given Decimal Is OK.
@@ -641,5 +639,17 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         /// <param name="obj"></param>
         /// <returns></returns>
         public static bool IsValidDecimal<T>(this T obj) => IsValidDecimal(Convert.ToString(obj));
+    
+        // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
+        /// <summary>
+        /// Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public static bool ADSFValidPassword(this string password)
+        {
+            string pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+            return Regex.IsMatch(password, pattern) ? true : false;
+        }
     }
 }

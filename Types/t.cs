@@ -23,7 +23,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
         public static IEnumerable<Exception> TryGetInnerExceptionsErrors(this Exception exception)
         {
             System.Exception ex = exception;
-
+            
             while (ex != null)         
             {
                 yield return ex;

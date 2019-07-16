@@ -288,6 +288,13 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.ADSFValidPassword(System.String)">
+            <summary>
+            Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.ByteHelpers.Utils.StreamToByteArray(System.IO.Stream)">
             <summary>
             Convert Stream To Byte Array
