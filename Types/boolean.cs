@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
@@ -651,5 +652,31 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
             string pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
             return Regex.IsMatch(password, pattern) ? true : false;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sqlDataReader"></param>
+        /// <param name="columnName"></param>
+        /// <returns></returns>
+        public static bool HasColumn(this SqlDataReader sqlDataReader, string columnName)
+        {
+            try
+            {
+                return sqlDataReader.GetOrdinal(columnName) > 0;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="columnName"></param>
+        /// <returns></returns>
+        public static bool HasColumn(this DataTable dt, string columnName) => dt.Columns.Contains(columnName);
     }
 }

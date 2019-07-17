@@ -295,6 +295,22 @@
             <param name="password"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.HasColumn(System.Data.SqlClient.SqlDataReader,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sqlDataReader"></param>
+            <param name="columnName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.HasColumn(System.Data.DataTable,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="dt"></param>
+            <param name="columnName"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.ByteHelpers.Utils.StreamToByteArray(System.IO.Stream)">
             <summary>
             Convert Stream To Byte Array
@@ -770,6 +786,14 @@
             Attempt To Read All Innter Exceptions From The Hierarchy
             </summary>
             <param name="exception"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.T_Helpers.Utils.ConvertToObject``1(System.Data.SqlClient.SqlDataReader)">
+            <summary>
+            Convert SqlDataReader Results To Object.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sqlDataReader"></param>
             <returns></returns>
         </member>
         <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.PrintEvent(System.String,EbbsSoft.ExtensionHelpers.EnumHelpers.Utils.PrintEventType,System.ConsoleColor)">

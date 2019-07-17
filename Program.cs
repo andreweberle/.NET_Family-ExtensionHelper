@@ -13,16 +13,6 @@ namespace MyApplication
         {
             //EbbsSoft.ExtensionHelper.RemoveProcessedOrders()
             //EbbsSoft.ExtensionHelper.ExtractTextFromPDF("C:\\Users\\andrew.eberle\\Downloads\\imposition_documentation_2018-11-19_1758.pdf");
-            
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.TryGetInnerExceptionsErrors().Select(x=> x.Message));
-            }
-            Console.ReadKey();
         }
     }
 }
