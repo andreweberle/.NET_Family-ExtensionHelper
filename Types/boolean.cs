@@ -647,7 +647,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static bool ADSFValidPassword(this string password)
+        public static bool IsValidActiveDirectoryPassword(this string password)
         {
             string pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
             return Regex.IsMatch(password, pattern) ? true : false;

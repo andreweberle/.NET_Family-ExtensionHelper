@@ -607,6 +607,13 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
         public static string GetDirectoryName(this string path)
         {
             return System.IO.Path.GetDirectoryName(path) ?? null;
-        }  
+        }
+
+        /// <summary>
+        /// Convert A Colour Into Hex.
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public static string ColorToHex(this System.Drawing.Color color) => string.Format("#{0:X6}",color.ToArgb() & 0x00FFFFFF);
     }
 }

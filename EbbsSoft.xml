@@ -288,7 +288,7 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
-        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.ADSFValidPassword(System.String)">
+        <member name="M:EbbsSoft.ExtensionHelpers.BooleanHelpers.Utils.IsValidActiveDirectoryPassword(System.String)">
             <summary>
             Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
             </summary>
@@ -773,6 +773,13 @@
             <param name="path"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.StringHelpers.Utils.ColorToHex(System.Drawing.Color)">
+            <summary>
+            Convert A Colour Into Hex.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.T_Helpers.Utils.RemoveNullItemsToList``1(System.Collections.Generic.List{``0})">
             <summary>
             Remove Null Items From A List.
@@ -788,13 +795,31 @@
             <param name="exception"></param>
             <returns></returns>
         </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.T_Helpers.Utils.GetColourFromHtmlCode(System.String)">
+            <summary>
+            Get A Colour From Html Code.
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
         <member name="M:EbbsSoft.ExtensionHelpers.T_Helpers.Utils.ConvertToObject``1(System.Data.SqlClient.SqlDataReader)">
             <summary>
-            Convert SqlDataReader Results To Object.
+            Convert SqlDataReader Results To An Object.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="sqlDataReader"></param>
             <returns></returns>
+        </member>
+        <member name="T:EbbsSoft.ExtensionHelpers.T_Helpers.Utils.SqlPropertyName">
+            <summary>
+            SqlProperty Name
+            </summary>
+        </member>
+        <member name="M:EbbsSoft.ExtensionHelpers.T_Helpers.Utils.ConvertToXML``1(System.String)">
+            <summary>
+            Convert XML String To Object
+            </summary>
+            <typeparam name="T"></typeparam>
         </member>
         <member name="M:EbbsSoft.ExtensionHelpers.VoidHelpers.Utils.PrintEvent(System.String,EbbsSoft.ExtensionHelpers.EnumHelpers.Utils.PrintEventType,System.ConsoleColor)">
             <summary>
