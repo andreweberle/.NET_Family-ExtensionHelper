@@ -5,7 +5,8 @@ using System.Data.SqlClient;
 using EbbsSoft.ExtensionHelpers.BooleanHelpers;
 using System.Xml.Serialization;
 using System.IO;
-using EbbsSoft.ExtensionHelpers.StringHelpers;
+using System.Web;
+using EbbsSoft.ExtensionHelpers.EnumHelpers;
 
 namespace EbbsSoft.ExtensionHelpers.T_Helpers
 {
@@ -130,6 +131,122 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
             {
                 // nothing was found.
                 yield return null;
+            }
+        }
+        
+        /// <summary>
+        /// Insert An Object To SQL.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="sqlConnection"></param>
+        /// <returns></returns>
+        public static bool InsertInoToDB<T>(this object obj, SqlConnection sqlConnection, string tableName) where T : class, new()
+        {
+            // Build Query
+            System.Text.StringBuilder query = new System.Text.StringBuilder();
+
+            // Get ColumnNames
+            string[] columnName = sqlConnection.GetColumnNames(tableName).ToArray();
+
+            // Get Query Started.
+            query.Append($"INSERT INTO {tableName}(");
+
+            // Query Values.
+            System.Reflection.PropertyInfo[] propertyInfos = obj.GetType().GetProperties();
+
+            for (int i = 0; i < propertyInfos.Length; i++)
+            {
+                System.Reflection.PropertyInfo propertyInfo = propertyInfos[i];
+
+                if (propertyInfo.GetCustomAttributes(true).Length > 0)
+                {
+                    if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
+                    {
+                        query.Append($"{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName},");
+                    }
+                    continue;
+                }
+                else if (columnName.Any(x => x.ToLower() == propertyInfo.Name.ToLower()))
+                {
+                    query.Append($"{propertyInfo.Name},");
+                    continue;
+                }
+            }
+
+            // Remove The Last Char In The Query.
+            query.Length--;
+
+            // Close The Query
+            query.Append(")VALUES(");
+
+            // Check If The Table Contains The Property Name.
+            for (int i = 0; i < propertyInfos.Length; i++)
+            {
+                System.Reflection.PropertyInfo propertyInfo = propertyInfos[i];
+
+                if (propertyInfo.GetCustomAttributes(true).Length > 0)
+                {
+                    if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
+                    {
+                        query.Append($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName},");
+                    }
+                    continue;
+                }
+                else if (columnName.Any(x => x.ToLower() == propertyInfo.Name.ToLower()))
+                {
+                    query.Append($"@{propertyInfo.Name},");
+                    continue;
+                }
+            }
+
+            // Remove The Last Char.
+            query.Length--;
+
+            // Complete The Query.
+            query.Append(")");
+
+            // Here we will attempt to connect to the given database and execute the query.
+            try
+            {
+                // Create The Command.
+                using (SqlCommand sqlCommand = new SqlCommand(query.ToString(), sqlConnection))
+                {
+                    // Check If The Server Is Connected.
+                    if (sqlConnection.ConnectedToServerAsync())
+                    {
+                        foreach ((System.Reflection.PropertyInfo propertyInfo, System.Data.SqlDbType sqlDataType) in from System.Reflection.PropertyInfo propertyInfo in propertyInfos
+                                                                                                                     let sqlDataType = propertyInfo.PropertyType.TypeToSqlDbType()
+                                                                                                                     select (propertyInfo, sqlDataType)){
+                            if (propertyInfo.GetCustomAttributes(true).Length > 0)
+                            {
+                                if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
+                                {
+                                    sqlCommand.Parameters.Add($"@{propertyInfo.Name}", sqlDataType).Value = propertyInfo.GetValue(obj, null);
+                                }
+                                continue;
+                            }
+                            else if (columnName.Any(x => x.ToLower() == propertyInfo.Name.ToLower()))
+                            {
+                                sqlCommand.Parameters.Add($"@{propertyInfo.Name}", sqlDataType).Value = propertyInfo.GetValue(obj, null);
+                                continue;
+                            }
+                        }
+
+                        // Execute The Command And Return The Result.
+                        return Convert.ToBoolean(sqlCommand.ExecuteNonQuery());
+                    }
+                    else
+                    {
+                        // Throw A Connection Error.
+                        throw new Exception("Unable To Connect To Server.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Throw an error and all of the errros along with it.
+                throw new Exception(string.Join(" ", ex.TryGetInnerExceptionsErrors().Select(x => x.Message)));
             }
         }
 

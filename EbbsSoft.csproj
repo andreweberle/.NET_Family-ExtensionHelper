@@ -15,12 +15,8 @@
     <StartupObject />
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>\\FS1\UserData2$\andrew.eberle\My Documents\GitHub\.NET_Family-ExtensionHelper\EbbsSoft.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.5.0" />
+    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.5.1" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
@@ -34,6 +30,12 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>C:\Users\andrew.eberle\.nuget\packages\newtonsoft.json\12.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="EbbsSoft.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

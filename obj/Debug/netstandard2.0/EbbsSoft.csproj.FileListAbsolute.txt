@@ -26,9 +26,13 @@ C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netstandard2.
 C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netstandard2.0\EbbsSoft.dll
 C:\Users\Andrew Eberle\Documents\Visual Code\C#\EbbsSoft\obj\Debug\netstandard2.0\EbbsSoft.pdb
 \\FS1\UserData2$\andrew.eberle\My Documents\GitHub\.NET_Family-ExtensionHelper\bin\Debug\netstandard2.0\EbbsSoft.xml
+C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.csprojAssemblyReference.cache
 C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.csproj.CoreCompileInputs.cache
 C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.AssemblyInfoInputs.cache
 C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.AssemblyInfo.cs
-C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.csprojAssemblyReference.cache
+C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\bin\Debug\netstandard2.0\EbbsSoft.xml
+C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\bin\Debug\netstandard2.0\EbbsSoft.deps.json
+C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\bin\Debug\netstandard2.0\EbbsSoft.dll
+C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\bin\Debug\netstandard2.0\EbbsSoft.pdb
 C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.dll
 C:\Users\Andrew Eberle\Documents\GitHub\.NET_Family-ExtensionHelper\obj\Debug\netstandard2.0\EbbsSoft.pdb

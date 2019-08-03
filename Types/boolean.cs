@@ -672,6 +672,36 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         }
 
         /// <summary>
+        /// Get Column Names
+        /// </summary>
+        /// <param name="sqlConnection"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> GetColumnNames(this SqlConnection sqlConnection, string tableName)
+        {
+            if (sqlConnection.ConnectedToServerAsync())
+            {
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME =@tableName", sqlConnection))
+                {
+                    sqlCommand.Parameters.Add("@tableName", SqlDbType.NVarChar).Value = tableName;
+
+                    using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            for (int i = 0; i != sqlDataReader.FieldCount; i++)
+                            {
+                                yield return Convert.ToString(sqlDataReader.GetValue(i));
+                            }
+                        }
+                    }
+                }
+
+                sqlConnection.Close();
+            }
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="dt"></param>
