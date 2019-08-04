@@ -689,10 +689,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
                     {
                         while (sqlDataReader.Read())
                         {
-                            for (int i = 0; i != sqlDataReader.FieldCount; i++)
-                            {
-                                yield return Convert.ToString(sqlDataReader.GetValue(i));
-                            }
+                            yield return Convert.ToString(sqlDataReader.GetValue(0));
                         }
                     }
                 }

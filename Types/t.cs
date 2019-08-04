@@ -28,14 +28,14 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
         public static IEnumerable<Exception> TryGetInnerExceptionsErrors(this Exception exception)
         {
             System.Exception ex = exception;
-            
-            while (ex != null)         
+
+            while (ex != null)
             {
                 yield return ex;
                 ex = ex.InnerException;
             }
         }
-        
+
         /// <summary>
         /// Get A Colour From Html Code.
         /// </summary>
@@ -121,7 +121,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                             throw new Exception(string.Format("{0} Was Not A Found SQL Property", ex.Message));
                         }
                     }
-                   
+
                     // return the object back to the caller,
                     // start loop again if needed.
                     yield return t;
@@ -133,7 +133,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                 yield return null;
             }
         }
-        
+
         /// <summary>
         /// Insert An Object To SQL.
         /// </summary>
@@ -141,7 +141,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
         /// <param name="obj"></param>
         /// <param name="sqlConnection"></param>
         /// <returns></returns>
-        public static bool InsertInoToDB<T>(this object obj, SqlConnection sqlConnection, string tableName) where T : class, new()
+        public static bool InsertInToDB<T>(this object obj, SqlConnection sqlConnection, string tableName) where T : class, new()
         {
             // Build Query
             System.Text.StringBuilder query = new System.Text.StringBuilder();
@@ -155,56 +155,66 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
             // Query Values.
             System.Reflection.PropertyInfo[] propertyInfos = obj.GetType().GetProperties();
 
-            for (int i = 0; i < propertyInfos.Length; i++)
+            // We Want To Loop This Twice To Get The Column Name And Value.
+            for (int i = 0; i != 2; i++)
             {
-                System.Reflection.PropertyInfo propertyInfo = propertyInfos[i];
+                // Help make more readable.
+                bool isFirstLoop = i == 0;
 
-                if (propertyInfo.GetCustomAttributes(true).Length > 0)
+                // Start looping the property info, we will check if there are custom attributes first as that will overrule and property names
+                // as the user might have a different property name to what is in the table.
+                // if i is zero, this means that we are only at the first half of building our query, this section is for the column names.
+                foreach (System.Reflection.PropertyInfo propertyInfo in propertyInfos)
                 {
-                    if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
+                    // if the length is more than zero, there has been a custom attribute added.
+                    if (propertyInfo.GetCustomAttributes(true).Length > 0)
                     {
-                        query.Append($"{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName},");
+                        // One last check to see if the propertyname that was given is in the table.
+                        // if it is not, we will attempt to add it in the else statement.
+                        // this will use the original property name.
+                        if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
+                        {
+                            // Conditional Statement would have been nice...damn
+                            if (isFirstLoop)
+                            {
+                                query.Append($"{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName},");
+                            }
+                            else
+                            {
+                                query.Append($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName},");
+                            }
+                        }
                     }
-                    continue;
+                    else if (columnName.Any(x => x.ToLower() == propertyInfo.Name.ToLower()))
+                    {
+                        if (isFirstLoop)
+                        {
+                            query.Append($"{propertyInfo.Name},");
+                        }
+                        else
+                        {
+                            query.Append($"@{propertyInfo.Name},");
+                        }
+                    }
                 }
-                else if (columnName.Any(x => x.ToLower() == propertyInfo.Name.ToLower()))
+
+                if (i == 0)
                 {
-                    query.Append($"{propertyInfo.Name},");
-                    continue;
+                    // Remove The Last Char.
+                    query.Length--;
+
+                    // Complete The Query.
+                    query.Append(")VALUES(");
+                }
+                else
+                {
+                    // Remove The Last Char.
+                    query.Length--;
+
+                    // Complete The Query.
+                    query.Append(")");
                 }
             }
-
-            // Remove The Last Char In The Query.
-            query.Length--;
-
-            // Close The Query
-            query.Append(")VALUES(");
-
-            // Check If The Table Contains The Property Name.
-            for (int i = 0; i < propertyInfos.Length; i++)
-            {
-                System.Reflection.PropertyInfo propertyInfo = propertyInfos[i];
-
-                if (propertyInfo.GetCustomAttributes(true).Length > 0)
-                {
-                    if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
-                    {
-                        query.Append($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName},");
-                    }
-                    continue;
-                }
-                else if (columnName.Any(x => x.ToLower() == propertyInfo.Name.ToLower()))
-                {
-                    query.Append($"@{propertyInfo.Name},");
-                    continue;
-                }
-            }
-
-            // Remove The Last Char.
-            query.Length--;
-
-            // Complete The Query.
-            query.Append(")");
 
             // Here we will attempt to connect to the given database and execute the query.
             try
@@ -215,9 +225,11 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                     // Check If The Server Is Connected.
                     if (sqlConnection.ConnectedToServerAsync())
                     {
+                        // Here we will attempt to create an sqlparameter use the db field type.
                         foreach ((System.Reflection.PropertyInfo propertyInfo, System.Data.SqlDbType sqlDataType) in from System.Reflection.PropertyInfo propertyInfo in propertyInfos
                                                                                                                      let sqlDataType = propertyInfo.PropertyType.TypeToSqlDbType()
-                                                                                                                     select (propertyInfo, sqlDataType)){
+                                                                                                                     select (propertyInfo, sqlDataType))
+                        {
                             if (propertyInfo.GetCustomAttributes(true).Length > 0)
                             {
                                 if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
@@ -248,6 +260,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                 // Throw an error and all of the errros along with it.
                 throw new Exception(string.Join(" ", ex.TryGetInnerExceptionsErrors().Select(x => x.Message)));
             }
+
         }
 
         /// <summary>
@@ -261,7 +274,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
             /// </summary>
             /// <value></value>
             public string MapName { get; private set; }
-            
+
             /// <summary>
             /// Sql
             /// </summary>
@@ -283,11 +296,11 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
         /// Convert XML String To Object
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public static T ConvertToXML<T>(this string data) where T :class, new()
+        public static T ConvertToXML<T>(this string data) where T : class, new()
         {
             try
-            {     
-                var t = Activator.CreateInstance(typeof(T));            
+            {
+                var t = Activator.CreateInstance(typeof(T));
                 using (var stringReader = new StringReader(data))
                 {
                     var serializer = new XmlSerializer(typeof(T));
