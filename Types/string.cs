@@ -646,7 +646,7 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             {
                 using (System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME =@tableName", sqlConnection))
                 {
-                    sqlCommand.Parameters.Add("@tableName", SqlDbType.NVarChar).Value = tableName;
+                    sqlCommand.Parameters.Add("@tableName", System.Data.SqlDbType.NVarChar).Value = tableName;
 
                     using (System.Data.SqlClient.SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                     {
