@@ -140,6 +140,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <param name="sqlConnection"></param>
+        /// <param name="tableName"></param>
         /// <returns></returns>
         public static bool InsertInToDB<T>(this object obj, SqlConnection sqlConnection, string tableName) where T : class, new()
         {

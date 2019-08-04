@@ -633,5 +633,32 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
                 return str;
             }
         }
+    
+                /// <summary>
+        /// Get Column Names
+        /// </summary>
+        /// <param name="sqlConnection"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> GetColumnNames(this System.Data.SqlClient.SqlConnection sqlConnection, string tableName)
+        {
+            if (sqlConnection.ConnectedToServerAsync())
+            {
+                using (System.Data.SqlClient.SqlCommand sqlCommand = new System.Data.SqlClient.SqlCommand("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME =@tableName", sqlConnection))
+                {
+                    sqlCommand.Parameters.Add("@tableName", SqlDbType.NVarChar).Value = tableName;
+
+                    using (System.Data.SqlClient.SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            yield return Convert.ToString(sqlDataReader.GetValue(0));
+                        }
+                    }
+                }
+
+                sqlConnection.Close();
+            }
+        }
     }
 }
