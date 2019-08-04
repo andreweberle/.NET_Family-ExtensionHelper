@@ -615,5 +615,23 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
         /// <param name="color"></param>
         /// <returns></returns>
         public static string ColorToHex(this System.Drawing.Color color) => string.Format("#{0:X6}",color.ToArgb() & 0x00FFFFFF);
+    
+        /// <summary>
+        /// Concatenate A String. End
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="maxLength"></param>
+        /// <returns></returns>
+        public static string ConcatenateString(this string str, int maxLength)
+        {
+            try
+            {
+                return str.Substring(0, maxLength -1);
+            }
+            catch
+            {
+                return str;
+            }
+        }
     }
 }
