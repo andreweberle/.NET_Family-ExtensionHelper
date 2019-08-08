@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Web;
 using EbbsSoft.ExtensionHelpers.EnumHelpers;
+using EbbsSoft.ExtensionHelpers.StringHelpers;
 
 namespace EbbsSoft.ExtensionHelpers.T_Helpers
 {
