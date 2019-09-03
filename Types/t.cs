@@ -135,6 +135,19 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
         }
 
         /// <summary>
+        /// NameValueCollection To KeyValuePair
+        /// </summary>
+        /// <param name="nvc"></param>
+        /// <returns></returns>
+        public static IEnumerable<KeyValuePair<string, string>> ToIEnumerable(this System.Collections.Specialized.NameValueCollection nvc)
+        {
+            foreach (string key in nvc.AllKeys)
+            {
+                yield return new KeyValuePair<string, string>(key, nvc[key]);
+            }
+        }
+
+        /// <summary>
         /// Insert An Object To SQL.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -235,7 +248,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                             {
                                 if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
                                 {
-                                    sqlCommand.Parameters.Add($"@{propertyInfo.Name}", sqlDataType).Value = propertyInfo.GetValue(obj, null);
+                                    sqlCommand.Parameters.Add($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName}", sqlDataType).Value = propertyInfo.GetValue(obj, null);
                                 }
                                 continue;
                             }
