@@ -182,7 +182,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                 {
                     // if the length is more than zero, there has been a custom attribute added.
                     if (propertyInfo.GetCustomAttributes(true).Length > 0)
-                    {
+                    {       
                         // One last check to see if the propertyname that was given is in the table.
                         // if it is not, we will attempt to add it in the else statement.
                         // this will use the original property name.
@@ -191,11 +191,11 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                             // Conditional Statement would have been nice...damn
                             if (isFirstLoop)
                             {
-                                query.Append($"{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName},");
+                                query.Append($"[{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName}],");
                             }
                             else
                             {
-                                query.Append($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName},");
+                                query.Append($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.Replace(" ","")},");
                             }
                         }
                     }
@@ -203,11 +203,11 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                     {
                         if (isFirstLoop)
                         {
-                            query.Append($"{propertyInfo.Name},");
+                            query.Append($"[{propertyInfo.Name}],");
                         }
                         else
                         {
-                            query.Append($"@{propertyInfo.Name},");
+                            query.Append($"@{propertyInfo.Name.Replace(" ","")},");
                         }
                     }
                 }
@@ -248,13 +248,13 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                             {
                                 if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
                                 {
-                                    sqlCommand.Parameters.Add($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName}", sqlDataType).Value = propertyInfo.GetValue(obj, null);
+                                    sqlCommand.Parameters.Add($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.Replace(" ","")}", sqlDataType).Value = propertyInfo.GetValue(obj, null);
                                 }
                                 continue;
                             }
                             else if (columnName.Any(x => x.ToLower() == propertyInfo.Name.ToLower()))
                             {
-                                sqlCommand.Parameters.Add($"@{propertyInfo.Name}", sqlDataType).Value = propertyInfo.GetValue(obj, null);
+                                sqlCommand.Parameters.Add($"@{propertyInfo.Name.Replace(" ","")}", sqlDataType).Value = propertyInfo.GetValue(obj, null);
                                 continue;
                             }
                         }
