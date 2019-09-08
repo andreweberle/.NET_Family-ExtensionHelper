@@ -248,13 +248,13 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                             {
                                 if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
                                 {
-                                    sqlCommand.Parameters.Add($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.Replace(" ","")}", sqlDataType).Value = propertyInfo.GetValue(obj, null);
+                                    sqlCommand.Parameters.Add($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.Replace(" ","")}", sqlDataType).Value = propertyInfo.GetValue(obj, null) ?? DBNull.Value;
                                 }
                                 continue;
                             }
                             else if (columnName.Any(x => x.ToLower() == propertyInfo.Name.ToLower()))
                             {
-                                sqlCommand.Parameters.Add($"@{propertyInfo.Name.Replace(" ","")}", sqlDataType).Value = propertyInfo.GetValue(obj, null);
+                                sqlCommand.Parameters.Add($"@{propertyInfo.Name.Replace(" ","")}", sqlDataType).Value = propertyInfo.GetValue(obj, null) ?? DBNull.Value;
                                 continue;
                             }
                         }
@@ -274,7 +274,10 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                 // Throw an error and all of the errros along with it.
                 throw new Exception(string.Join(" ", ex.TryGetInnerExceptionsErrors().Select(x => x.Message)));
             }
-
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         /// <summary>

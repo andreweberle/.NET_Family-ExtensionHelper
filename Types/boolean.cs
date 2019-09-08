@@ -114,7 +114,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
             Task.WaitAll(task);
             return isConnected;
         }
-        
+
         /// <summary>
         /// Reset a Tables Seed.
         /// </summary>
@@ -124,25 +124,20 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         /// <returns></returns>
         public static bool ResetTableSeed(this SqlConnection sqlConn, string tableName, int seedIndex)
         {
-            string RESET_SEED = $"DBCC CHECKIDENT ('[{tableName}]', RESEED, @value)";
-            using (SqlConnection sqlConnection = new SqlConnection(sqlConn.ConnectionString))
-            {   
-                using (SqlCommand sqlCommand = new SqlCommand(RESET_SEED, sqlConn))
+            string RESET_SEED = $"DBCC CHECKIDENT ('[{tableName}]', RESEED, {seedIndex})";
+            using (SqlCommand sqlCommand = new SqlCommand(RESET_SEED, sqlConn))
+            {
+                if (sqlConn.ConnectedToServerAsync())
                 {
-                    sqlCommand.Parameters.AddWithValue("@value",seedIndex.ToString());
-                    
-                    if (sqlConnection.ConnectedToServerAsync())
-                    {
-                        return sqlCommand.ExecuteNonQuery() > 1 ? true : false;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return sqlCommand.ExecuteNonQuery() > 1 ? true : false;
+                }
+                else
+                {
+                    return false;
                 }
             }
         }
-  
+
         /// <summary>
         /// Check if a T type list is empty.
         /// </summary>
