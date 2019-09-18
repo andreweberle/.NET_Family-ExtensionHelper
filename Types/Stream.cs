@@ -15,6 +15,27 @@ namespace EbbsSoft.ExtensionHelpers.StreamHelpers
         {
             return new MemoryStream(byteArray);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ms"></param>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static void Append(this MemoryStream ms, byte[] bytes)
+        {
+            ms.Write(bytes, 0, bytes.Length);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ms"></param>
+        /// <param name="value"></param>
+        public static void Append(this MemoryStream ms, byte value)
+        {
+            ms.Append(value);
+        }
     
         /// <summary>
         /// return a string to a memory stream.
