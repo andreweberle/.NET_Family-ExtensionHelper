@@ -318,18 +318,7 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         /// <returns></returns>
         public static bool IsValidPhoneNumber(this string phoneNumber)
         {
-            if (phoneNumber.Length == 10 && phoneNumber.StartsWith("0"))
-            {
-                foreach (char c in phoneNumber)
-                {
-                    if (!char.IsDigit(c))
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            return false;
+            return Regex.IsMatch(phoneNumber, @"^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$");
         }
 
         /// <summary>

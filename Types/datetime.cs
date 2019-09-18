@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using EbbsSoft.ExtensionHelpers.BooleanHelpers;
 
 namespace EbbsSoft.ExtensionHelpers.DateTimeHelpers
@@ -33,6 +34,30 @@ namespace EbbsSoft.ExtensionHelpers.DateTimeHelpers
         }
 
         /// <summary>
+        /// Unix TimeStamp To DateTime
+        /// </summary>
+        /// <param name="unixTimestamp"></param>
+        /// <returns></returns>
+        public static DateTime UnixToDateTime(this double unixTimestamp)
+        {
+            DateTime unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Local);
+            long unixTimeStampInTicks = (long) (unixTimestamp * TimeSpan.TicksPerSecond);
+            return new DateTime(unixStart.Ticks + unixTimeStampInTicks, System.DateTimeKind.Local);
+        }
+
+        /// <summary>
+        /// DateTime To Unix TimeStamp
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static Double DateTimeToUnix(this DateTime dateTime)
+        {
+            DateTime unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            long unixTimeStampInTicks = (dateTime.ToUniversalTime() - unixStart).Ticks;
+            return (double) unixTimeStampInTicks / TimeSpan.TicksPerSecond;
+        }
+
+        /// <summary>
         /// Get DateTimeFromInternet
         /// </summary>
         /// <param name="dt"></param>
@@ -62,5 +87,19 @@ namespace EbbsSoft.ExtensionHelpers.DateTimeHelpers
             // If Raw Data Is Null, Return MinValue For DateTime.
             return rawData == null ? DateTime.MinValue : (DateTime)Convert.ToDateTime(Convert.ToString(rawData["time"]));
         }
+   
+        /// <summary>
+        /// Get Days In Month.
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static IEnumerable<DateTime> AllDaysInMonth(this DateTime dateTime)
+        {
+            int days = DateTime.DaysInMonth(dateTime.Year, dateTime.Month);
+            for (int i = 1; i <= days; i++)
+            {
+                yield return new DateTime(dateTime.Year, dateTime.Month, i);
+            }
+        }  
     }
 }
