@@ -43,7 +43,14 @@ namespace EbbsSoft.ExtensionHelpers.EnumHelpers
         /// <returns></returns>
         public static T ToEnum<T>(this string value)
         {
-            return (T)Enum.Parse(typeof(T), value, true);
+            try
+            {
+                return (T)Enum.Parse(typeof(T), value, true);
+            }
+            catch
+            {
+                return default;
+            }
         }
 
         /// <summary>
