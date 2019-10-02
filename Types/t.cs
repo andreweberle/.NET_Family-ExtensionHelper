@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using System.IO;
 using EbbsSoft.ExtensionHelpers.EnumHelpers;
 using EbbsSoft.ExtensionHelpers.StringHelpers;
+using System.Reflection;
 
 namespace EbbsSoft.ExtensionHelpers.T_Helpers
 {
@@ -277,6 +278,62 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
             finally
             {
                 sqlConnection.Close();
+            }
+        }
+
+        /// <summary>
+        /// Get PropertyName.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public static object GetProperty<T>(this T obj, string propertyName)
+        {
+            // Check to see if the property name is correct.
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentException("message", nameof(propertyName));
+            }
+
+            try
+            {        
+                Type t = obj.GetType();
+                PropertyInfo propertyInfo = t.GetProperty(propertyName);
+                return propertyInfo.GetValue(obj);
+            }
+            catch
+            {
+                return default;
+            }
+        }
+
+        /// <summary>
+        /// Set Property Value
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="value"></param>
+        /// <typeparam name="T"></typeparam>
+        public static bool SetProperty<T>(this T obj, string propertyName, object value)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentException("message", nameof(propertyName));
+            }
+
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            try
+            {
+                Type t = obj.GetType();
+                PropertyInfo propertyInfo = t.GetProperty(propertyName);
+                propertyInfo.SetValue(obj, value);
+                return propertyInfo.GetValue(obj) == value;
+            }
+            catch
+            {
+                return default;
             }
         }
 
