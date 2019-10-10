@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using EbbsSoft.ExtensionHelpers;
 using System.Linq;
-using EbbsSoft.ExtensionHelpers.T_Helpers;
+using EbbsSoft.ExtensionHelpers.GenericHelpers;
 
 namespace MyApplication
 {

@@ -9,7 +9,7 @@ using EbbsSoft.ExtensionHelpers.EnumHelpers;
 using EbbsSoft.ExtensionHelpers.StringHelpers;
 using System.Reflection;
 
-namespace EbbsSoft.ExtensionHelpers.T_Helpers
+namespace EbbsSoft.ExtensionHelpers.GenericHelpers
 {
     public static class Utils
     {
@@ -50,7 +50,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="sqlDataReader"></param>
         /// <returns></returns>
-        public static IEnumerable<T> ConvertToObject<T>(this SqlDataReader sqlDataReader) where T : class, new()
+        public static IEnumerable<T> ConvertToObject<T>(this SqlDataReader sqlDataReader) /* where T : class, new() */
         {
             // Check that the data reader has data to begin with.
             if (sqlDataReader.HasRows)
@@ -94,6 +94,8 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
                                 // As a custom attribute was added,
                                 // we will use this to continue on outside of all loops.
                                 customAttributeAdded = true;
+
+                                break;
                             }
                         }
 
@@ -131,7 +133,8 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
             else
             {
                 // nothing was found.
-                yield return null;
+                // yield return null;
+                yield return default(T);
             }
         }
 
@@ -165,7 +168,7 @@ namespace EbbsSoft.ExtensionHelpers.T_Helpers
             string[] columnName = sqlConnection.GetColumnNames(tableName).ToArray();
 
             // Get Query Started.
-            query.Append($"INSERT INTO {tableName}(");
+            query.Append($"INSERT INTO [{tableName}](");
 
             // Query Values.
             System.Reflection.PropertyInfo[] propertyInfos = obj.GetType().GetProperties();

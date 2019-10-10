@@ -229,7 +229,6 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             return "application/unknown";
         }
 
-
         /// <summary>
         /// Calculate MD5
         /// </summary>
@@ -634,7 +633,7 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             }
         }
     
-                /// <summary>
+        /// <summary>
         /// Get Column Names
         /// </summary>
         /// <param name="sqlConnection"></param>
@@ -656,8 +655,41 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
                         }
                     }
                 }
-
                 sqlConnection.Close();
+            }
+        }
+
+        /// <summary>
+        /// Convert String To SecureString.
+        /// </summary>
+        /// <param name="stringToSecure"></param>
+        /// <returns></returns>
+        public static System.Security.SecureString ToSecureString(this string stringToSecure)
+        {
+            // Not using Idisposable.
+            System.Security.SecureString secureString = new  System.Security.SecureString();
+            stringToSecure.ToCharArray().ToList().ForEach(c => secureString.AppendChar(c));
+            secureString.MakeReadOnly();
+            return secureString;
+        }
+
+        /// <summary>
+        /// Convert SecureString To String.
+        /// </summary>
+        /// <param name="secureString"></param>
+        /// <returns></returns>
+        public static string ConvertToString(this System.Security.SecureString secureString)
+        {
+            IntPtr passwordPointer = IntPtr.Zero;
+            
+            try
+            {
+                passwordPointer = Marshal.SecureStringToGlobalAllocUnicode(secureString);
+                return Marshal.PtrToStringUni(passwordPointer);
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(passwordPointer);
             }
         }
     }

@@ -45,40 +45,12 @@ namespace EbbsSoft.ExtensionHelpers.VoidHelpers
         }
 
         /// <summary>
-        /// Preform a swap between two strings
-        /// objects.
+        /// Perform A Swap.
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public static void Swap(ref string x, ref string y)
-        { 
-            var temp = x;
-            x = y;
-            y = temp;
-        }
-
-        /// <summary>
-        /// Preform a swap between two integers
-        /// objects.
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public static void Swap(ref int x, ref int y)
-        {
-            // Swap Objects Without An 
-            // Addictional Variable. 
-            x = x + y;
-            y = x - y;
-            x = x - y;
-        }
-
-        /// <summary>
-        /// Preform a swap between two objects
-        /// objects.
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public static void Swap(ref object x, ref object y)
+        /// <typeparam name="T"></typeparam>
+        public static void Swap<T>(ref T x, ref T y)
         {
             var temp = x;
             x = y;
