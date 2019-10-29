@@ -5281,7 +5281,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "\\\\fs1\\UserData2$\\andrew.eberle\\My Documents\\GitHub\\.NET_Family-ExtensionHelper\\EbbsSoft.csproj",
-      "projectName": "1a2b3c-4d5e_EbbsSoft",
+      "projectName": "EbbsSoft.NETStandard.ExtensionHelper",
       "projectPath": "\\\\fs1\\UserData2$\\andrew.eberle\\My Documents\\GitHub\\.NET_Family-ExtensionHelper\\EbbsSoft.csproj",
       "packagesPath": "C:\\Users\\andrew.eberle\\.nuget\\packages\\",
       "outputPath": "\\\\fs1\\UserData2$\\andrew.eberle\\My Documents\\GitHub\\.NET_Family-ExtensionHelper\\obj\\",

@@ -28,8 +28,10 @@ namespace EbbsSoft.ExtensionHelpers.GenericHelpers
         /// <returns></returns>
         public static IEnumerable<Exception> TryGetInnerExceptionsErrors(this Exception exception)
         {
+            // Get The System Exception.
             System.Exception ex = exception;
 
+            // Start Returning Each Exception To The Caller.
             while (ex != null)
             {
                 yield return ex;
@@ -42,6 +44,7 @@ namespace EbbsSoft.ExtensionHelpers.GenericHelpers
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
+        [Obsolete("Not Implemented", true)]
         public static System.Drawing.Color GetColourFromHtmlCode(this string code) => System.Drawing.ColorTranslator.FromHtml(code);
 
         /// <summary>
@@ -95,6 +98,7 @@ namespace EbbsSoft.ExtensionHelpers.GenericHelpers
                                 // we will use this to continue on outside of all loops.
                                 customAttributeAdded = true;
 
+                                // Break out of the loop.
                                 break;
                             }
                         }
@@ -341,6 +345,20 @@ namespace EbbsSoft.ExtensionHelpers.GenericHelpers
         }
 
         /// <summary>
+        /// Fast Reverse
+        /// </summary>
+        /// <param name="items"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static IEnumerable<T> FastReverse<T>(this IList<T> items)
+        {
+            for (int i = items.Count - 1; i >= 0; i--)
+            {
+                yield return items[i];
+            }
+        }
+
+        /// <summary>
         /// SqlProperty Name
         /// </summary>
         [AttributeUsage(AttributeTargets.Property)]
@@ -377,16 +395,25 @@ namespace EbbsSoft.ExtensionHelpers.GenericHelpers
         {
             try
             {
+                // Get The Default Instance of The T Type.
                 var t = Activator.CreateInstance(typeof(T));
+
+                // Add String Data To The StringReader.
                 using (var stringReader = new StringReader(data))
                 {
+                    // Setup The XmlSerializer
                     var serializer = new XmlSerializer(typeof(T));
+
+                    // Attempt To Return The String Data In The Given T Type Object.
                     return (T)serializer.Deserialize(stringReader);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(string.Join(" ", ex.TryGetInnerExceptionsErrors().Select(x => x.Message)));
+                // Write The Error Response To The Debug Window.
+                System.Diagnostics.Debug.WriteLine(string.Join(" ", ex.TryGetInnerExceptionsErrors().Select(x => x.Message)));
+
+                // Return The Object With The Default Properties.
                 return new T();
             }
         }

@@ -692,5 +692,47 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
                 Marshal.ZeroFreeGlobalAllocUnicode(passwordPointer);
             }
         }
+    
+        /// <summary>
+        /// Dispose SecureString Object.
+        /// </summary>
+        /// <param name="secureString"></param>
+        public static void DisposeSecureString(this System.Security.SecureString secureString)
+        {
+            // Create A SecureString Pointer Placeholder.
+            IntPtr secureStringPtr = IntPtr.Zero;
+            
+            try
+            {  
+                // Get The SecureString Pointer.
+                secureStringPtr = Marshal.SecureStringToGlobalAllocUnicode(secureString);
+
+                // Check That The Pointer Is Correct.
+                if (secureStringPtr != IntPtr.Zero)
+                {
+                    // Release The SecureString Pointer.
+                    Marshal.ZeroFreeGlobalAllocUnicode(secureStringPtr);
+                }
+            }
+            catch
+            {
+                // Stop Any Errors From Showing.
+            }
+        }
+    
+        /// <summary>
+        /// Percentage of Two Numbers.
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        /// <returns></returns>
+        public static (double Increase, string Percentage) PercentageOfTwoNumbers(double oldValue, double newValue)
+        {
+            // Get The Increase.
+            double increase = newValue - oldValue;
+
+            // Return The Percentage.
+            return (increase, string.Format("{0:F2}%", increase / oldValue * 100));
+        }
     }
 }

@@ -5,7 +5,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage />
-    <PackageId>1a2b3c-4d5e_EbbsSoft</PackageId>
+    <PackageId>EbbsSoft.NETStandard.ExtensionHelper</PackageId>
     <Description>A .NET Standard Extension Helper.</Description>
     <Authors>Andrew Eberle</Authors>
     <PackageTags>C# .NET Extenstion Helper EbbsSoft</PackageTags>
@@ -13,6 +13,7 @@
     <Product>.NET Standard Extension Helper</Product>
     <ApplicationIcon />
     <StartupObject />
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +30,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>C:\Users\andrew.eberle\.nuget\packages\newtonsoft.json\12.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 
