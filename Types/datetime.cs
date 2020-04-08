@@ -58,37 +58,6 @@ namespace EbbsSoft.ExtensionHelpers.DateTimeHelpers
         }
 
         /// <summary>
-        /// Get DateTimeFromInternet
-        /// </summary>
-        /// <param name="dt"></param>
-        /// <param name="username">username required, Sign up for an account http://api.geonames.org</param>
-        /// <returns></returns>
-        public static DateTime GetDateTimeFromInternet(this DateTime dt, string username)
-        {
-            // Raw Data Place Holder.
-            dynamic rawData = null;
-
-            // Tuple For Corrdinates.
-            (decimal lat, decimal lng) = EbbsSoft.ExtensionHelpers.DecimalsHelpers.Utils.GetCoordinates();
-
-            Task task = Task.Run(async() =>
-            {
-                string url = $"http://api.geonames.org/timezoneJSON?lat={lat}&lng={lng}&username={username}";
-                using (HttpClient httpClient = new HttpClient())
-                using (HttpResponseMessage httpResponseMessage= await httpClient.GetAsync(url))
-                using (HttpContent httpContent = httpResponseMessage.Content)
-                {
-                    // Attempt To Read Data.
-                    rawData = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(await httpContent.ReadAsStringAsync());
-                }
-            });
-            Task.WaitAny(task);
-
-            // If Raw Data Is Null, Return MinValue For DateTime.
-            return rawData == null ? DateTime.MinValue : (DateTime)Convert.ToDateTime(Convert.ToString(rawData["time"]));
-        }
-   
-        /// <summary>
         /// Get Days In Month.
         /// </summary>
         /// <param name="dateTime"></param>

@@ -486,28 +486,11 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static string ToJson(this string data)
+        public static string ToJson<T>(this T data)
         {
             try
             {
-                return Newtonsoft.Json.JsonConvert.DeserializeObject(data).ToString() ?? null;
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
-
-        /// <summary>
-        /// Convert an Object To Json.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static string ToJson(this object obj)
-        {
-            try
-            {
-                return Newtonsoft.Json.JsonConvert.SerializeObject(obj).ToString() ?? null;
+                return System.Text.Json.JsonSerializer.Serialize<T>(data);
             }
             catch (Exception ex)
             {

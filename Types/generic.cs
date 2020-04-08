@@ -8,6 +8,7 @@ using System.IO;
 using EbbsSoft.ExtensionHelpers.EnumHelpers;
 using EbbsSoft.ExtensionHelpers.StringHelpers;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace EbbsSoft.ExtensionHelpers.GenericHelpers
 {
@@ -256,7 +257,7 @@ namespace EbbsSoft.ExtensionHelpers.GenericHelpers
                             {
                                 if (columnName.Any(x => x.ToLower() == ((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.ToLower()))
                                 {
-                                    sqlCommand.Parameters.Add($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.Replace(" ","")}", sqlDataType).Value = propertyInfo.GetValue(obj, null) ?? DBNull.Value;
+                                    sqlCommand.Parameters.Add($"@{((SqlPropertyName)propertyInfo.GetCustomAttributes(true).First()).MapName.Replace(" ", "")}", sqlDataType).Value = propertyInfo.GetValue(obj, null) ?? DBNull.Value;
                                 }
                                 continue;
                             }
@@ -356,6 +357,52 @@ namespace EbbsSoft.ExtensionHelpers.GenericHelpers
             {
                 yield return items[i];
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj1"></param>
+        /// <param name="obj2"></param>
+        /// <returns></returns>
+        public static bool CompareObject<T>(this T obj1, T obj2)
+        {
+            if (obj1 is null || obj2 is null)
+            {
+                return false;
+            }
+            else
+            {
+                return System.Text.Json.JsonSerializer.Serialize(obj1) == System.Text.Json.JsonSerializer.Serialize(obj2);
+            }
+        }
+
+        /// <summary>
+        /// Clone Object.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static T Clone<T>(this T source)
+        {
+            // Convert To Json String.
+            var serialized = source.ToJson();
+
+            // Convert To T Object.
+            return System.Text.Json.JsonSerializer.Deserialize<T>(serialized);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static async Task<T> FirstIfNotNullOrEmptyAsync<T>(this Task<IEnumerable<T>> obj) where T : class
+        {
+            IEnumerable<T> result = await obj;
+            return result?.FirstOrDefault();
         }
 
         /// <summary>

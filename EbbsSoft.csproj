@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage />
     <PackageId>EbbsSoft.NETStandard.ExtensionHelper</PackageId>
@@ -17,14 +17,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.5.1" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
-    <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
+    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.6.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="4.7.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="ZetaLongPaths" Version="1.0.0.29" />
-    <PackageReference Include="ZetaLongPaths.NetStandard" Version="1.0.0.29" />
+    <PackageReference Include="System.Text.Json" Version="4.7.1" />
+    <PackageReference Include="ZetaLongPaths" Version="1.0.0.37" />
+    <PackageReference Include="ZetaLongPaths.NetStandard" Version="1.0.0.35" />
   </ItemGroup>
 
   <ItemGroup>
