@@ -662,5 +662,21 @@ namespace EbbsSoft.ExtensionHelpers.BooleanHelpers
         /// <param name="columnName"></param>
         /// <returns></returns>
         public static bool HasColumn(this DataTable dt, string columnName) => dt.Columns.Contains(columnName);
+    
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="guidString"></param>
+        /// <returns></returns>
+        public static bool IsGuid(this string guidString){
+            if (string.IsNullOrEmpty(guidString)) return false;
+            if (Guid.TryParse(guidString, out Guid result)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    
     }
 }

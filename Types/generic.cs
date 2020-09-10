@@ -374,7 +374,7 @@ namespace EbbsSoft.ExtensionHelpers.GenericHelpers
             }
             else
             {
-                return System.Text.Json.JsonSerializer.Serialize(obj1) == System.Text.Json.JsonSerializer.Serialize(obj2);
+                return obj1.ToJson() == obj2.ToJson();
             }
         }
 

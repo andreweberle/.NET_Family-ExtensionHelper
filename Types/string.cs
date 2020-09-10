@@ -480,17 +480,17 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
                 yield return value.Substring(i, Math.Min(numberOfParts, value.Length -i));
             }
         }
-    
+
         /// <summary>
         /// Convert To Json
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static string ToJson<T>(this T data)
+        public static string ToJson(this object obj)
         {
             try
             {
-                return System.Text.Json.JsonSerializer.Serialize<T>(data);
+                return Newtonsoft.Json.JsonConvert.SerializeObject(obj).ToString() ?? null;
             }
             catch (Exception ex)
             {
