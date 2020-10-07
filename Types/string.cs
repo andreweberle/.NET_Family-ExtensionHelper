@@ -485,12 +485,13 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
         /// Convert To Json
         /// </summary>
         /// <param name="data"></param>
+        /// <param name="formatting"></param>
         /// <returns></returns>
-        public static string ToJson(this object obj)
+        public static string ToJson(this object obj, Newtonsoft.Json.Formatting formatting = Newtonsoft.Json.Formatting.None)
         {
             try
             {
-                return Newtonsoft.Json.JsonConvert.SerializeObject(obj).ToString() ?? null;
+                return Newtonsoft.Json.JsonConvert.SerializeObject(obj, formatting).ToString() ?? null;
             }
             catch (Exception ex)
             {
