@@ -9,7 +9,6 @@ starting requesting the extenstion helper class.<br>So from there I created this
 ## Requirements
    - For Adding your own extenstions, you will need .Net Standard.
    - Framework 4.6.2 Required For .Net
-   - .Net Core 1.0
    - IF THERE ARE ANY OTHER REQUIREMENTS, PLEASE LET ME KNOW :)
 ## Enums
    - OutputStyle
