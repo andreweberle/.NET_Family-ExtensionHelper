@@ -718,5 +718,40 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             // Return The Percentage.
             return (increase, string.Format("{0:F2}%", increase / oldValue * 100));
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string ToFileSafeName(this string str)
+        {
+            return string.Concat(str.Split(System.IO.Path.GetInvalidFileNameChars())).Trim();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="secretKey"></param>
+        /// <returns></returns>
+        public static string HmacSha256Digest(this string message, string secretKey)
+        {
+            StringBuilder hashStringBuilder = new StringBuilder();
+            byte[] secretkeyBytes = Encoding.UTF8.GetBytes(secretKey);
+            byte[] inputBytes = Encoding.UTF8.GetBytes(message);
+            using (var hmac = new HMACSHA512(secretkeyBytes))
+            {
+                byte[] hashValue = hmac.ComputeHash(inputBytes);
+                foreach (var theByte in hashValue)
+                {
+                    hashStringBuilder.Append(theByte.ToString("x2"));
+                }
+            }
+
+            string finalHash = hashStringBuilder.ToString();
+            hashStringBuilder = null;
+            return finalHash;
+        }
     }
 }
