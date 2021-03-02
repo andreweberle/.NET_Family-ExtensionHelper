@@ -10,7 +10,6 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using EbbsSoft.ExtensionHelpers.BooleanHelpers;
-using ZetaLongPaths;
 using static EbbsSoft.ExtensionHelpers.Overrides.Utils;
 
 namespace EbbsSoft.ExtensionHelpers.StringHelpers
@@ -221,7 +220,7 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
                     return mimeType;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return "application/unknown";
             }
@@ -295,24 +294,6 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
             return null;
         }
 
-        /// <Summary>
-        /// Returns the file's creator
-        /// </Summary>
-        /// <param name="fileInfo">FileInfo Object</param>
-        /// <returns></returns>
-        public static string Owner(this FileInfo fileInfo)
-        {            
-            var zetaFileinfo = new ZlpFileInfo(fileInfo);
-            return zetaFileinfo.Owner;
-        }
-
-        /// <Summary>
-        /// Returns the file's creator
-        /// </Summary>
-        /// <param name="zetaFileInfo">ZetaFileInfo Object</param>
-        /// <returns></returns>
-        public static string Owner(this ZlpFileInfo zetaFileInfo) => zetaFileInfo.Owner;
-
         /// <summary>
         /// Extract A Hyper Link From an ahref property.
         /// </summary>
@@ -336,22 +317,6 @@ namespace EbbsSoft.ExtensionHelpers.StringHelpers
         {
             return Path.GetInvalidPathChars()
                        .Aggregate(str, (current, c) => current.Replace(c.ToString(), ""));
-        }
-
-        /// <summary>
-        /// Extract Text From A Pdf.
-        /// </summary>
-        /// <param name="pdf_File"></param>
-        /// <returns></returns>
-        public static string TryExtractTextFromPDF(this string pdf_File)
-        {
-            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
-            {
-                var pdfReader = new iTextSharp.text.pdf.PdfReader(pdf_File);
-                StringBuilder text = new StringBuilder();
-                var t = pdfReader.GetPageContent(pdfReader.NumberOfPages);
-                return System.Text.Encoding.UTF8.GetString(t);
-            }
         }
 
         /// <summary>

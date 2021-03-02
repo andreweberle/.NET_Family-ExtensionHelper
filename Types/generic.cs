@@ -41,14 +41,6 @@ namespace EbbsSoft.ExtensionHelpers.GenericHelpers
         }
 
         /// <summary>
-        /// Get A Colour From Html Code.
-        /// </summary>
-        /// <param name="code"></param>
-        /// <returns></returns>
-        [Obsolete("Not Implemented", true)]
-        public static System.Drawing.Color GetColourFromHtmlCode(this string code) => System.Drawing.ColorTranslator.FromHtml(code);
-
-        /// <summary>
         /// Convert SqlDataReader Results To An Object.
         /// </summary>
         /// <typeparam name="T"></typeparam>
